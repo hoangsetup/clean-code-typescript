@@ -1,50 +1,36 @@
 # clean-code-typescript [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Clean%20Code%20Typescript&url=https://github.com/labs42io/clean-code-typescript)
 
-Clean Code concepts adapted for TypeScript.  
-Inspired from [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
+Các khái niệm về Clean Code dành cho Typescript.
 
-## Table of Contents
+Được lấy cảm hứng từ [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
 
-  1. [Introduction](#introduction)
-  2. [Variables](#variables)
-  3. [Functions](#functions)
-  4. [Objects and Data Structures](#objects-and-data-structures)
-  5. [Classes](#classes)
+## Mục lục
+
+  1. [Giới thiệu](#introduction)
+  2. [Biến](#variables)
+  3. [Hàm](#functions)
+  4. [Đối tượng và cấu trúc dữ liệu](#objects-and-data-structures)
+  5. [Lớp đối tượng](#classes)
   6. [SOLID](#solid)
-  7. [Testing](#testing)
-  8. [Concurrency](#concurrency)
-  9. [Error Handling](#error-handling)
-  10. [Formatting](#formatting)
-  11. [Comments](#comments)
-  12. [Translations](#translations)
+  7. [Kiểm thử](#testing)
+  8. [Xử đồng thời](#concurrency)
+  9. [Xử lý lỗi](#error-handling)
+  10. [Định dạng](#formatting)
+  11. [Chú thích](#comments)
+  12. [Các ngôn ngữ khác](#translations)
 
-## Introduction
+## Giới thiệu
 
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
-[*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for TypeScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in TypeScript.
+Trong cuốn sách [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) của tác giả Robert C. Martin, liệt kê các nguyên tắc thiết kế phần mềm, các nguyên tắc đó cũng được dành cho Typescript. Nó không phải là một phong cách của một người hay nhóm người. Nó là một hướng dẫn để tạo ra các đoạn code có tính [readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) khi viết phần mềm có sử dụng TypeScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
-*Clean Code*.
+Không phải mọi nguyên tắc được nhắc tới trong tài liệu này đều phải được tuân thủ nghiêm ngặt, thậm chí số nguyên tắc được thống nhất chung có thể sẽ ít hơn trong tài liệu. Đây chỉ là những hướng dẫn và chỉ là những hướng dẫn, nhưng nó là những thức được đúc kết qua nhiều năm của nhóm tác giả *Clean Code*.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-TypeScript code that you and your team produce.
+Nghề kỹ sư phần mềm của chúng ta mới chỉ có tuổi đời hơn 50 một chút, và chúng ta vẫn đang học hỏi rất nhiều. Khi mà kiến trúc phần mềm cũng tồn tại đủ lâu như ngành kiến trúc, có lẽ chúng ta sẽ có những quy tắc khó hơn bắt buộc phải tuân theo. Hiện tại, những hướng dẫn này đóng vai trò như nền tảng để bạn hoặc nhóm phát triển của bạn có thể đánh giá được chất lượng code khi code Typescript.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Một điều nữa: Bạn hãy nhớ, việc bạn biết được những điều được mô tả trong tài liệu này, sẽ không lập tức giúp bạn trở thành một nhà phát triển phần mềm tốt, và làm việc nhiều năm với chúng không có nghĩa là bạn sẽ không mắc sai lầm. Mọi đoạn code đều được bắt đầu như một bản nháp, giống như đất sét lúc còn ướt được tạo hình cho tới khi đạt được hình dáng cuối cùng. Cuối cùng, chúng ta sẽ luôn chỉnh sửa những điểm chưa hoàn hảo trong code của mình khi chúng ta đem những được code được xem xét bởi những người đồng nghiệp. Đừng cố gượng ép bản thân vì những bản nháp đầu tiên luôn cần cải thiện. Thay vào đó, cứ code đã! 
 
 **[⬆ back to top](#table-of-contents)**
 
