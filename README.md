@@ -32,15 +32,15 @@ Nghề kỹ sư phần mềm của chúng ta mới chỉ có tuổi đời hơn 
 
 Một điều nữa: Bạn hãy nhớ, việc bạn biết được những điều được mô tả trong tài liệu này, sẽ không lập tức giúp bạn trở thành một nhà phát triển phần mềm tốt, và làm việc nhiều năm với chúng không có nghĩa là bạn sẽ không mắc sai lầm. Mọi đoạn code đều được bắt đầu như một bản nháp, giống như đất sét lúc còn ướt được tạo hình cho tới khi đạt được hình dáng cuối cùng. Cuối cùng, chúng ta sẽ luôn chỉnh sửa những điểm chưa hoàn hảo trong code của mình khi chúng ta đem những được code được xem xét bởi những người đồng nghiệp. Đừng cố gượng ép bản thân vì những bản nháp đầu tiên luôn cần cải thiện. Thay vào đó, cứ code đã! 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
-## Variables
+## Biến
 
-### Use meaningful variable names
+### Đặt tên biến có ý nghĩa
 
-Distinguish names in such a way that the reader knows what the differences offer.
+Sử dụng tên biến phân biệt, giúp cho người đọc có thể hiểu được sự khác biệt giữa chúng là gì.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function between<T>(a1: T, a2: T, a3: T): boolean {
@@ -49,7 +49,7 @@ function between<T>(a1: T, a2: T, a3: T): boolean {
 
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function between<T>(value: T, left: T, right: T): boolean {
@@ -57,13 +57,13 @@ function between<T>(value: T, left: T, right: T): boolean {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
-### Use pronounceable variable names
+### Đặt tên biến theo dạng có thể đọc được
 
-If you can’t pronounce it, you can’t discuss it without sounding like an idiot.
+Nếu bạn không thể đọc được tên biến, bạn sẽ không thể thảo luận nó với đồng nghiệp, điều đó có nghĩa thứ bạn viết là thứ bỏ đi.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 type DtaRcrd102 = {
@@ -73,7 +73,7 @@ type DtaRcrd102 = {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 type Customer = {
@@ -83,11 +83,11 @@ type Customer = {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
-### Use the same vocabulary for the same type of variable
+### Sử dụng cùng một từ vựng cho các biến cùng loại
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function getUserInfo(): User;
@@ -95,66 +95,67 @@ function getUserDetails(): User;
 function getUserData(): User;
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function getUser(): User;
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
-### Use searchable names
+### Sử dụng tên biến có thể tìm kiếm
 
-We will read more code than we will ever write. It's important that the code we do write is readable and searchable. By *not* naming variables that end up being meaningful for understanding our program, we hurt our readers. Make your names searchable. Tools like [TSLint](https://palantir.github.io/tslint/rules/no-magic-numbers/) can help identify unnamed constants.
+Sự thật là chúng ta đọc code nhiều hơn việc chúng ta viết. Vì vậy việc viết code có thể đọc và tìm kiếm là vô cùng quan trọng. Sử dụng các giá trị *không được đặt tên* sẽ làm chương trình của chúng ta trở nên khó hiểu và nó sẽ làm *tổn thương* người đọc. Hãy sử dụng các tên biến có thể tìm kiếm. Một số công cụ như [TSLint](https://palantir.github.io/tslint/rules/no-magic-numbers/) có thể giúp chúng ta tìm ra những hằng số chưa được đặt tên.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
-// What the heck is 86400000 for?
+// Con số 86400000 đại diện cho điều gì?
 setTimeout(restart, 86400000);
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
-// Declare them as capitalized named constants.
+// Định nghĩa giá trị hằng số bằng các chữ cái viết hoa.
 const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
 
 setTimeout(restart, MILLISECONDS_IN_A_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
-### Use explanatory variables
+### Sử dụng các biến đã giải thích ý nghĩa của chúng
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 declare const users: Map<string, User>;
 
 for (const keyValue of users) {
-  // iterate through users map
+  // lặp qua các phần từ trong map users
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 declare const users: Map<string, User>;
 
 for (const [id, user] of users) {
-  // iterate through users map
+  // lặp qua các phần từ trong map users
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
-### Avoid Mental Mapping
+### Tránh việc ánh xạ hàm ý
 
-Explicit is better than implicit.  
-*Clarity is king.*
+Biểu thị rõ ràng sẽ tốt hơn việc hàm ý
 
-**Bad:**
+*Rõ ràng là Vua.*
+
+**Chưa tốt:**
 
 ```ts
 const u = getUser();
@@ -162,7 +163,7 @@ const s = getSubscription();
 const t = charge(u, s);
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 const user = getUser();
@@ -170,13 +171,13 @@ const subscription = getSubscription();
 const transaction = charge(user, subscription);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
-### Don't add unneeded context
+### Không thêm những mô tả không cần thiết
 
-If your class/type/object name tells you something, don't repeat that in your variable name.
+Nếu tên của class/type/object đã nói cho bạn điều gì đó, thì đừng lặp lại điều đó trong tên biến.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 type Car = {
@@ -190,7 +191,7 @@ function print(car: Car): void {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 type Car = {
@@ -204,13 +205,13 @@ function print(car: Car): void {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
-### Use default arguments instead of short circuiting or conditionals
+### Sử dụng giá trị mặc định cho tham số thay vì dùng cú pháp 3 ngôi hay các đoạn điều kiện
 
-Default arguments are often cleaner than short circuiting.
+Giá trị tham số mặc định thường rõ ràng hơn các tính toán điều kiện
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function loadPages(count?: number) {
@@ -219,7 +220,7 @@ function loadPages(count?: number) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function loadPages(count: number = 10) {
@@ -227,7 +228,7 @@ function loadPages(count: number = 10) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Use enum to document the intent
 
@@ -280,7 +281,7 @@ class Projector {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Functions
 
@@ -349,7 +350,7 @@ createMenu({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Functions should do one thing
 
@@ -381,7 +382,7 @@ function isActiveClient(client: Client) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Function names should say what they do
 
@@ -409,7 +410,7 @@ const date = new Date();
 addMonthToDate(date, 1);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Functions should only be one level of abstraction
 
@@ -477,7 +478,7 @@ function parse(tokens: Token[]): SyntaxTree {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Remove duplicate code
 
@@ -568,7 +569,7 @@ function showEmployeeList(employee: Developer | Manager) {
 
 You should be critical about code duplication. Sometimes there is a tradeoff between duplicated code and increased complexity by introducing unnecessary abstraction. When two implementations from two different modules look similar but live in different domains, duplication might be acceptable and preferred over extracting the common code. The extracted common code in this case introduces an indirect dependency between the two modules.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Set default objects with Object.assign or destructuring
 
@@ -623,7 +624,7 @@ createMenu({ body: 'Bar' });
 To avoid any side effects and unexpected behavior by passing in explicitly the `undefined` or `null` value, you can tell the TypeScript compiler to not allow it.
 See [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) option in TypeScript.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Don't use flags as function parameters
 
@@ -654,7 +655,7 @@ function createFile(name: string) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Avoid Side Effects (part 1)
 
@@ -696,7 +697,7 @@ const encodedName = toBase64(name);
 console.log(name);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Avoid Side Effects (part 2)
 
@@ -728,7 +729,7 @@ function addItemToCart(cart: CartItem[], item: Item): CartItem[] {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Don't write to global functions
 
@@ -762,7 +763,7 @@ class MyArray<T> extends Array<T> {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Favor functional programming over imperative programming
 
@@ -817,7 +818,7 @@ const totalOutput = contributions
   .reduce((totalLines, output) => totalLines + output.linesOfCode, 0);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Encapsulate conditionals
 
@@ -841,7 +842,7 @@ if (canActivateService(subscription, account)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Avoid negative conditionals
 
@@ -869,7 +870,7 @@ if (!isEmailUsed(node)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Avoid conditionals
 
@@ -934,7 +935,7 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Avoid type checking
 
@@ -964,7 +965,7 @@ function travelToTexas(vehicle: Vehicle) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Don't over-optimize
 
@@ -988,7 +989,7 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Remove dead code
 
@@ -1021,7 +1022,7 @@ const req = requestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Use iterators and generators
 
@@ -1104,7 +1105,7 @@ itiriri(fibonacci())
   .forEach(fib => console.log(fib));
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Objects and Data Structures
 
@@ -1170,7 +1171,7 @@ const account = new BankAccount();
 account.balance = 100;
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Make objects have private/protected members
 
@@ -1213,7 +1214,7 @@ class Circle {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Prefer immutability
 
@@ -1311,7 +1312,7 @@ const result = readonlyData(100);
 result.value = 200; // error
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### type vs. interface
 
@@ -1369,7 +1370,7 @@ class Square implements Shape {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Classes
 
@@ -1413,7 +1414,7 @@ class Dashboard {
 // ...
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### High cohesion and low coupling
 
@@ -1493,7 +1494,7 @@ class UserNotifier {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Prefer composition over inheritance
 
@@ -1562,7 +1563,7 @@ class EmployeeTaxData {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Use method chaining
 
@@ -1644,7 +1645,7 @@ const query = new QueryBuilder()
   .build();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## SOLID
 
@@ -1699,7 +1700,7 @@ class UserSettings {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Open/Closed Principle (OCP)
 
@@ -1792,7 +1793,7 @@ class HttpRequester {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Liskov Substitution Principle (LSP)
 
@@ -1909,7 +1910,7 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Interface Segregation Principle (ISP)
 
@@ -1990,7 +1991,7 @@ class EconomicPrinter implements Printer {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Dependency Inversion Principle (DIP)
 
@@ -2087,7 +2088,7 @@ const reader = new ReportReader(new JsonFormatter());
 await report = await reader.read('report.json');
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Testing
 
@@ -2105,7 +2106,7 @@ There's no excuse to not write tests. There are [plenty of good JS test framewor
 
 3. You are not allowed to write any more production code than is sufficient to pass the one failing unit test.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### F.I.R.S.T. rules
 
@@ -2121,7 +2122,7 @@ Clean tests should follow the rules:
 
 - **Timely** unit tests should be written before the production code. If you write tests after the production code, you might find writing tests too hard.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Single concept per test
 
@@ -2171,7 +2172,7 @@ describe('AwesomeDate', () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### The name of the test should reveal its intention
 
@@ -2205,7 +2206,7 @@ describe('Calendar', () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Concurrency
 
@@ -2276,7 +2277,7 @@ Promises supports a few helper methods that help make code more conscise:
 
 `Promise.all` is especially useful when there is a need to run tasks in parallel. `Promise.race` makes it easier to implement things like timeouts for promises.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Async/Await are even cleaner than Promises
 
@@ -2324,7 +2325,7 @@ try {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Error Handling
 
@@ -2391,7 +2392,7 @@ function calculateTotal(items: Item[]): Failable<number, 'empty'> {
 
 For the detailed explanation of this idea refer to the [original post](https://medium.com/@dhruvrajvanshi/making-exceptions-type-safe-in-typescript-c4d200ee78e9).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Don't ignore caught errors
 
@@ -2427,7 +2428,7 @@ try {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Don't ignore rejected promises
 
@@ -2468,7 +2469,7 @@ try {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Formatting
 
@@ -2531,7 +2532,7 @@ type Container = { /* ... */ }
 Prefer using `PascalCase` for class, interface, type and namespace names.  
 Prefer using `camelCase` for variables, functions and class members.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Function callers and callees should be close
 
@@ -2620,7 +2621,7 @@ const review = new PerformanceReview(employee);
 review.review();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Organize imports
 
@@ -2666,7 +2667,7 @@ import { ApiCredentials, Adapters } from './common/api/authorization';
 import { ConfigPlugin } from './plugins/config/configPlugin';
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Use typescript aliases
 
@@ -2700,7 +2701,7 @@ import { UserService } from '@services/UserService';
 ...
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Comments
 
@@ -2727,7 +2728,7 @@ const isSubscriptionActive = subscription.endDate > Date.now;
 if (isSubscriptionActive) { /* ... */ }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Don't leave commented out code in your codebase
 
@@ -2753,7 +2754,7 @@ type User = {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Don't have journal comments
 
@@ -2781,7 +2782,7 @@ function combine(a: number, b: number): number {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### Avoid positional markers
 
@@ -2843,7 +2844,7 @@ class Client {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ### TODO comments
 
@@ -2871,7 +2872,7 @@ function getActiveSubscriptions(): Promise<Subscription[]> {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Trở lại đầu trang](#table-of-contents)**
 
 ## Translations
 
