@@ -230,12 +230,11 @@ function loadPages(count: number = 10) {
 
 **[⬆ Trở lại đầu trang](#table-of-contents)**
 
-### Use enum to document the intent
+### Sử dụng enum để ghi lại ý định sử dụng biến
 
-Enums can help you document the intent of the code. For example when we are concerned about values being
-different rather than the exact value of those.
+Enum có thể giúp bạn ghi lại ý nghĩa của biến trong nhiều trường hợp. Ví dụ, chúng ta chỉ quan tâm tới các giá trị khác nhau chứ không quan tâm tới giá trị chính xác.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 const GENRE = {
@@ -258,7 +257,7 @@ class Projector {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 enum GENRE {
@@ -283,31 +282,30 @@ class Projector {
 
 **[⬆ Trở lại đầu trang](#table-of-contents)**
 
-## Functions
+## Functions (Hàm)
 
-### Function arguments (2 or fewer ideally)
+### Tham số hàm (2 tham số hoặc ít hơn là lý tưởng)
 
-Limiting the amount of function parameters is incredibly important because it makes testing your function easier.
-Having more than three leads to a combinatorial explosion where you have to test tons of different cases with each separate argument.  
+Giới hạn số lượng tham số của hàm là vô cùng quan trọng vì nó giúp cho việc kiểm thử hàm của bạn trở nên dễ dàng hơn.
+Có nhiều hơn 3 tham số, nghĩa là bạn có tổ hợp các trường hợp phải kiểm tra khác nhau cho từng tham số riêng biệt.
 
-One or two arguments is the ideal case, and three should be avoided if possible. Anything more than that should be consolidated.
-Usually, if you have more than two arguments then your function is trying to do too much.
-In cases where it's not, most of the time a higher-level object will suffice as an argument.  
+Một hoặc hai tham số là lý tưởng, và ba tham số thì nên tránh nếu có thể. Tất cả các trường hợp nhiều hơn 3 đều phải xem xét lại. Thông thường, nếu hàm của bạn có nhiều hơn 2 tham số, có nghĩa là hàm của bạn đang phải thực hiện quá nhiều chức năng cùng lúc. Trong trường hợp không phải như vậy, hầu hết trong mọi trường hợp, các bạn có thể thay thế các tham số bằng một tham số là một object.
 
-Consider using object literals if you are finding yourself needing a lot of arguments.  
+Khi bạn thấy mình cần rất nhiều tham số, hãy cân nhắc sử dụng một đối tượng.
 
-To make it obvious what properties the function expects, you can use the [destructuring](https://basarat.gitbook.io/typescript/future-javascript/destructuring) syntax.
-This has a few advantages:
+Để làm cho các thuộc tính của một hàm được rõ ràng hơn, các bạn có thể sử dụng cú pháp [destructuring](https://basarat.gitbook.io/typescript/future-javascript/destructuring).
 
-1. When someone looks at the function signature, it's immediately clear what properties are being used.
+Nó có một vài ưu điểm sau:
 
-2. It can be used to simulate named parameters.
+1. Khi ai đó nhìn vào tài liệu của một hàm, mọi thứ sẽ rõ ràng, những thuộc tính nào sẽ được sử dụng.
 
-3. Destructuring also clones the specified primitive values of the argument object passed into the function. This can help prevent side effects. Note: objects and arrays that are destructured from the argument object are NOT cloned.
+2. Nó có thể sử dụng để đại diện cho các tham số.
 
-4. TypeScript warns you about unused properties, which would be impossible without destructuring.
+3. Các kiểu dữ liệu nguyên thủy sẽ là tham trị khi được truyền vào theo cách này. Điều này giúp ngăn ngừa các tác dụng phụ(đối tượng truyền vào bị biến đổi sau khi thực hiện hàm). Chú ý: object và array sẽ bị truyền vào như các tham biến(thay đổi giá trị trong hàm sẽ làm thay đổi giá trị của đối tượng được truyền vào).
 
-**Bad:**
+4. Typescript sẽ cảnh bảo cho bạn những tham số nào không được sử dụng, điều này là không thể nếu không có cú pháp destructuring(??).
+
+**Chưa tốt:**
 
 ```ts
 function createMenu(title: string, body: string, buttonText: string, cancellable: boolean) {
@@ -317,7 +315,7 @@ function createMenu(title: string, body: string, buttonText: string, cancellable
 createMenu('Foo', 'Bar', 'Baz', true);
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function createMenu(options: { title: string, body: string, buttonText: string, cancellable: boolean }) {
@@ -332,7 +330,7 @@ createMenu({
 });
 ```
 
-You can further improve readability by using [type aliases](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases):
+Bạn có thể cải thiện độ dễ đọc của code hơn nữa bằng cách sử dụng [type aliases](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases):
 
 ```ts
 
