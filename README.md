@@ -350,11 +350,11 @@ createMenu({
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Functions should do one thing
+### Mỗi hàm chỉ nên làm một việc
 
-This is by far the most important rule in software engineering. When functions do more than one thing, they are harder to compose, test, and reason about. When you can isolate a function to just one action, it can be refactored easily and your code will read much cleaner. If you take nothing else away from this guide other than this, you'll be ahead of many developers.
+Đây là quy tắc quan trọng nhất trong công nghệ phần mềm. Khi một hàm làm nhiều hơn một việc, nó sẽ trở nên khó viết hơn, khó kiểm thử hơn. Khi bạn có thể thiết kế một hàm chỉ làm một việc độc lập, việc thay đổi sau này sẽ dễ dàng hơn nhiều, và code của bạn sẽ dễ đọc hơn, sạch hơn. Nếu bạn làm theo được hướng dẫn này, bạn sẽ đi trước nhiều nhà phát triển phần mềm khác.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function emailClients(clients: Client[]) {
@@ -367,7 +367,7 @@ function emailClients(clients: Client[]) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function emailClients(clients: Client[]) {
@@ -382,9 +382,9 @@ function isActiveClient(client: Client) {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Function names should say what they do
+### Tên của hàm nên đại diện cho chức năng của nó
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function addToDate(date: Date, month: number): Date {
@@ -393,11 +393,11 @@ function addToDate(date: Date, month: number): Date {
 
 const date = new Date();
 
-// It's hard to tell from the function name what is added
+// Nếu chỉ nhìn vào tên hàm, quá khó để biết được nó sẽ thêm vào cái gì
 addToDate(date, 1);
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function addMonthToDate(date: Date, month: number): Date {
@@ -410,11 +410,12 @@ addMonthToDate(date, 1);
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Functions should only be one level of abstraction
+### Hàm chỉ nên có một mức độ trừu tượng(abstraction)
 
-When you have more than one level of abstraction your function is usually doing too much. Splitting up functions leads to reusability and easier testing.
+Khi hàm của bạn có nhiều hơn một mức độ trừu tượng, nó thường sẽ làm quá nhiều chức năng. Việc tách nhỏ thành nhiều hàm giúp bạn tái sử dụng code và dễ dàng kiểm thử hơn.
 
-**Bad:**
+
+**Chưa tốt:**
 
 ```ts
 function parseCode(code: string) {
@@ -439,7 +440,7 @@ function parseCode(code: string) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 const REGEXES = [ /* ... */ ];
@@ -478,20 +479,19 @@ function parse(tokens: Token[]): SyntaxTree {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Remove duplicate code
+### Loại bỏ những đoạn code bị lặp
 
-Do your absolute best to avoid duplicate code.
-Duplicate code is bad because it means that there's more than one place to alter something if you need to change some logic.  
+Hãy làm tất cả mọi thứ mà bạn biết để tránh việc lặp lại code.
+Lặp code là một điều rất tệ bởi vì như thế có nghĩa là sẽ có nhiều hơn một nơi phải sửa nếu sau này bạn thay đổi một vài logic code.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your tomatoes, onions, garlic, spices, etc.
-If you have multiple lists that you keep this on, then all have to be updated when you serve a dish with tomatoes in them.
-If you only have one list, there's only one place to update!  
+Tưởng tượng, bạn quản lý một nhà hàng và bạn phải theo dõi hàng tồn trong kho: Tất cả cà chua, hành tây, tỏi, gia vị...Nếu bạn có nhiều danh sách để theo dõi số lượng của chúng, thì tất cả phải được cập nhật khi nhà hàng phục vụ một món ăn mà trong đó có cà chua.
+Nếu bạn chỉ có một danh sách, thì chỉ có một nơi phải cập nhật!
 
-Oftentimes you have duplicate code because you have two or more slightly different things, that share a lot in common, but their differences force you to have two or more separate functions that do much of the same things. Removing duplicate code means creating an abstraction that can handle this set of different things with just one function/module/class.  
+Thông thường, code của bạn bị lặp vì bạn có hai hay nhiều thứ chỉ hơi hơi khác nhau, chúng có nhiều điểm chung, nhưng sự khác biệt của chúng bắt buộc bạn phải có 2 hoặc nhiều hàm riêng biệt làm những công việc giống nhau. Loại bỏ việc lặp code có nghĩa là bạn tạo ra một thứ trừu tượng, thứ đó có thể tập hợp và xử lý những điểm khác nhau ở trên, nó có thể là một hàm, module hay một lớp(function/module/class).
 
-Getting the abstraction right is critical, that's why you should follow the [SOLID](#solid) principles. Bad abstractions can be worse than duplicate code, so be careful! Having said this, if you can make a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself updating multiple places anytime you want to change one thing.
+Việc tạo ra một trừu tượng đúng là rất quan trọng, đó là lý do tại sao bạn nên tuân các nguyên lý [SOLID](#solid). Việc tạo ra một trừu tượng xấu còn tệ hơn việc lặp code, hãy cẩn thận! Như đã nói, nếu bạn có thể tạo ra một trừu tượng, hãy làm nó! Đừng lặp lại chính mình (Don't repeat yourself), nếu không, bạn sẽ phải cập nhập nhiều nơi mỗi khi bạn muốn thay đổi một điều gì đó.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function showDeveloperList(developers: Developer[]) {
@@ -527,7 +527,7 @@ function showManagerList(managers: Manager[]) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class Developer {
