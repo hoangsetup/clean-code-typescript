@@ -565,13 +565,13 @@ function showEmployeeList(employee: Developer | Manager) {
 }
 ```
 
-You should be critical about code duplication. Sometimes there is a tradeoff between duplicated code and increased complexity by introducing unnecessary abstraction. When two implementations from two different modules look similar but live in different domains, duplication might be acceptable and preferred over extracting the common code. The extracted common code in this case introduces an indirect dependency between the two modules.
+Bạn nên đặc biệt chú trọng tới việc lặp code. Đôi khi, có sự đánh đổi giữa việc giữ code bị lặp với việc lằm tăng độ phức tạp bằng việc đưa vào các trừ tượng không cần thiết. Khi việc triển khai code được thực hiện ở hai module khác nhau, trông có vẻ giống nhau nhưng chúng được thực hiện ở các domain khác nhau, việc lặp code có thể chấp nhận được và được ưu tiên hơn so với việc viết một đoạn mã dùng chung cho cả 2 module. Việc viết mã dùng chung trong trường hợp này tạo ra sự phụ thuộc gián tiếp giữa 2 module.
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Set default objects with Object.assign or destructuring
+### Đặt giá trị mặc định cho các object bằng Object.assign hoặc cú pháp destructuring
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 type MenuConfig = { title?: string, body?: string, buttonText?: string, cancellable?: boolean };
@@ -588,7 +588,7 @@ function createMenu(config: MenuConfig) {
 createMenu({ body: 'Bar' });
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 type MenuConfig = { title?: string, body?: string, buttonText?: string, cancellable?: boolean };
@@ -607,7 +607,7 @@ function createMenu(config: MenuConfig) {
 createMenu({ body: 'Bar' });
 ```
 
-Alternatively, you can use destructuring with default values:
+Hoặc bạn có thể sử dụng cú pháp destructuring với các giá trị mặc định:
 
 ```ts
 type MenuConfig = { title?: string, body?: string, buttonText?: string, cancellable?: boolean };
@@ -619,17 +619,16 @@ function createMenu({ title = 'Foo', body = 'Bar', buttonText = 'Baz', cancellab
 createMenu({ body: 'Bar' });
 ```
 
-To avoid any side effects and unexpected behavior by passing in explicitly the `undefined` or `null` value, you can tell the TypeScript compiler to not allow it.
-See [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) option in TypeScript.
+Để tránh các tác dụng phụ và các hành vi không mong muốn khi truyền vào các giá trị `undefined` hoặc `null`, bạn có thể cài đặt để trình biên dịch Typescript chặn chúng.
+Chi tiết, tùy chọn [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) của Typescript.
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Don't use flags as function parameters
+### Không sử dụng biến cờ (flag) như là một tham số của hàm
 
-Flags tell your user that this function does more than one thing.
-Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+Những tham số cờ cho thấy hàm của bạn làm nhiều hơn một việc. Mỗi hàm chỉ nên làm một việc. Tách các hàm của bạn ra nếu chúng có các rẽ nhánh khác nhau dựa trên một biến boolean.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function createFile(name: string, temp: boolean) {
@@ -641,7 +640,7 @@ function createFile(name: string, temp: boolean) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function createTempFile(name: string) {
@@ -655,21 +654,22 @@ function createFile(name: string) {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Avoid Side Effects (part 1)
+### Tránh các tác dụng phụ (phần 1)
 
-A function produces a side effect if it does anything other than take a value in and return another value or values.
-A side effect could be writing to a file, modifying some global variable, or accidentally wiring all your money to a stranger.  
+Một hàm tạo ra một tác dụng phụ nếu nó làm bất kỳ điều gì khác ngoài lấy một giá trị và trả lại những giá trị khác giá trị của nó.
 
-Now, you do need to have side effects in a program on occasion. Like the previous example, you might need to write to a file.
-What you want to do is to centralize where you are doing this. Don't have several functions and classes that write to a particular file.
-Have one service that does it. One and only one.  
+Một tác dụng phụ có thể là ghi vào một file, thay đổi giá trị của một biến toàn cục, hoặc vô tình chuyển toàn bộ tiền của bạn cho một người lạ...
 
-The main point is to avoid common pitfalls like sharing state between objects without any structure, using mutable data types that can be written to by anything, and not centralizing where your side effects occur. If you can do this, you will be happier than the vast majority of other programmers.
+Bây giờ, đôi khi bạn cần có một "tác dụng phụ" trong một chương trình. Giống như ví dụ ở trên, bạn cần phải ghi dữ liệu vào một tệp. Những gì bạn muốn làm là tập trung vào nơi bạn sẽ làm điều này. Không được có nhiều hàm hay class ghi được vào một file cụ thể. Chỉ có một nơi làm được điều đó. Và chỉ một thôi.
 
-**Bad:**
+Điểm chính của những nguyên tắc được nêu ở tài liệu này là  để tránh những "cạm bẫy" phổ biến như: Chia sẻ trạng thái của các đối tượng mà không theo cấu trúc nào, sử dụng các kiểu biến có thể thay đổi dữ liệu và có thể ghi vào đó mọi thứ, và không tập trung vào những nơi có thể xảy ra các tác dụng phụ.
+
+Nếu bạn tránh được những điều này, bạn sẽ hạnh phúc hơn đa số các lập trình viên khác.
+
+**Chư tốt:**
 
 ```ts
-// Global variable referenced by following function.
+// Biến toàn cục, giá trị tham chiếu theo các hàm.
 let name = 'Robert C. Martin';
 
 function toBase64() {
@@ -677,9 +677,9 @@ function toBase64() {
 }
 
 toBase64();
-// If we had another function that used this name, now it'd be a Base64 value
+// Nếu chúng ta có một hàm khác sử dụng biến `name` này, thì giờ giá trị của nó là một Base64 string
 
-console.log(name); // expected to print 'Robert C. Martin' but instead 'Um9iZXJ0IEMuIE1hcnRpbg=='
+console.log(name); // Mong muốn in ra 'Robert C. Martin' nhưng lại nhận được 'Um9iZXJ0IEMuIE1hcnRpbg=='
 ```
 
 **Good:**
@@ -697,21 +697,21 @@ console.log(name);
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Avoid Side Effects (part 2)
+### Tránh các tác dụng phụ (phần 2)
 
-In JavaScript, primitives are passed by value and objects/arrays are passed by reference. In the case of objects and arrays, if your function makes a change in a shopping cart array, for example, by adding an item to purchase, then any other function that uses that `cart` array will be affected by this addition. That may be great, however it can be bad too. Let's imagine a bad situation:  
+Trong Javascript, những giá trị nguyên thủy (string, number...) được truyền vào hàm theo kiểu tham trị, object và array được truyền vào theo kiểu tham biến. Trong trường hợp của object và array, nếu hàm của bạn tạo ra một một thay đổi trong mảng chứ thông tin giỏ hàng, ví dụ: Thêm một món hàng vào giỏ hàng. Sau đó, mọi hàm khác sử dụng mảng `cart` sẽ bị ảnh hưởng bởi việc thêm vào một món hàng. Điều này có thể khá tuyệt, tuy nhiên nó có thể sẽ rất tệ. Hãy tưởng tượng một trường hợp xấu như sau:
 
-The user clicks the "Purchase", button which calls a `purchase` function that spawns a network request and sends the `cart` array to the server. Because of a bad network connection, the purchase function has to keep retrying the request. Now, what if in the meantime the user accidentally clicks "Add to Cart" button on an item they don't actually want before the network request begins? If that happens and the network request begins, then that purchase function will send the accidentally added item because it has a reference to a shopping cart array that the `addItemToCart` function modified by adding an unwanted item.  
+Người dùng bấm vào nút "Thanh toán", việc này sẽ gọi hàm `purchase`, hàm này sẽ tạo ra một network request và gửi mảng `cart` tới máy chủ. Bởi vì chất lượng mạng hơi tệ, yêu cầu chưa được gửi thành công, hàm `purchase` đã thử lại việc gửi yêu cầu tới máy chủ. Ngay lúc này, trước khi yêu cầu được hàm `purchase` gửi đi, chuyện gì sẽ xảy ra nếu người dùng vô tình bấm vào nút "Thêm vào giỏ hàng" của một món đồ họ thực sự không mong muốn? Nếu việc này xảy ra và yêu cầu tới máy chủ được bắt đầu, thì hàm `purchase` sẽ gửi món đồ vô tình được thêm vào mảng `cart`, vì mảng này là giá trị tham chiếu đối với hàm `addItemToCart` - Hàm này đã thêm vào một món đồ không muốn.
 
-A great solution would be for the `addItemToCart` to always clone the `cart`, edit it, and return the clone. This ensures that no other functions that are holding onto a reference of the shopping cart will be affected by any changes.  
+Một giải pháp tuyệt vời cho hàm `addItemToCart` là hàm này sẽ luôn tạo ra một bản sao của mảng `cart`, sửa đổi trên bản sao, và trả lại bản sao khi kết thúc hàm. Điều này đảm bảo không một hàm nào đang giữ giá trị của mảng `cart` bị ảnh hưởng bởi bất kỳ thì thay đổi nào.
 
-Two caveats to mention to this approach:
+Hai lưu ý được đề cập tới phương pháp này:
 
-1. There might be cases where you actually want to modify the input object, but when you adopt this programming practice you will find that those cases are pretty rare. Most things can be refactored to have no side effects! (see [pure function](https://en.wikipedia.org/wiki/Pure_function))
+1. Có thể có những trường hợp thực sự bạn muốn thay đổi giá trị đầu vào, nhưng khi bạn áp dụng những thứ được mô tả trong tài liệu này, bạn sẽ thấy trường hợp này là khá hiếm gặp. Hầu hết mọi thứ có thể được tái cấu trúc để tránh tác dụng phục kiểu này! (Xem thêm [pure function](https://en.wikipedia.org/wiki/Pure_function))
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily, this isn't a big issue in practice because there are great libraries that allow this kind of programming approach to be fast and not as memory intensive as it would be for you to manually clone objects and arrays.
+2. Việc nhân bản (clone) một đối tượng lớn có thể ảnh hướng lớn tới hiệu suất của chương trình. May mắn thay, trong thực tế thì đây không phải là một vấn đề lớn, vì chúng ta đã có những thư viện tuyệt vời cho phép phương pháp lập trình như thế này nhanh và không tốn nhiều bộ nhớ như khi bạn tự sao chép các array hay object lớn.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function addItemToCart(cart: CartItem[], item: Item): void {
@@ -719,7 +719,7 @@ function addItemToCart(cart: CartItem[], item: Item): void {
 };
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function addItemToCart(cart: CartItem[], item: Item): CartItem[] {
@@ -729,11 +729,14 @@ function addItemToCart(cart: CartItem[], item: Item): CartItem[] {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Don't write to global functions
+### Không viết các hàm toàn cục
 
-Polluting globals is a bad practice in JavaScript because you could clash with another library and the user of your API would be none-the-wiser until they get an exception in production. Let's think about an example: what if you wanted to extend JavaScript's native Array method to have a `diff` method that could show the difference between two arrays? You could write your new function to the `Array.prototype`, but it could clash with another library that tried to do the same thing. What if that other library was just using `diff` to find the difference between the first and last elements of an array? This is why it would be much better to just use classes and simply extend the `Array` global.
+"Ô nhiễm" toàn cục là một thực tiễn tồi tệ trong Javascript, bởi vì code bạn có thể đụng độ với những thư viện khác và người dùng của bạn sẽ bị bối rối khi họ gặp một lỗi trên sản phẩm.
 
-**Bad:**
+Hãy nghĩa tới một ví dụ sau: Chuyện gì sẽ xảy ra nếu bạn muốn mở rộng phương thức của đối tượng Array trong Javascript, để có thêm phương thức `diff` - phương thức trả về những phần tử khác nhau của hai mảng? Bạn có thể sẽ viết phương thức mới của bạn thông qua `Array.prototype`, nhưng nó có thể đụng độ tới những thư viện khác - những thư viện cũng đã làm những việc tương tự. Chuyện gì sẽ xảy ra nếu thư việc khác cũng sử dụng  cái tên `diff` để tìm ra sự khác nhau giữa phần tử đầu tiên và cuối cùng của một mảng? Điều này giải thích tại sao sẽ tốt hơn nhiều nếu như sử dụng một class, nó đơn giản là mở rộng của lớp `Array`.
+
+
+**Chưa tốt:**
 
 ```ts
 declare global {
@@ -750,7 +753,7 @@ if (!Array.prototype.diff) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class MyArray<T> extends Array<T> {
@@ -763,11 +766,11 @@ class MyArray<T> extends Array<T> {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Favor functional programming over imperative programming
+### Ưu tiên lặp trình hàm hơn lập trình mệnh lệnh(imperative programming)
 
-Favor this style of programming when you can.
+Ưu tiên phong cách lập trình hàm hơn khi bạn có thể.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 const contributions = [
@@ -793,7 +796,7 @@ for (let i = 0; i < contributions.length; i++) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 const contributions = [
@@ -818,9 +821,9 @@ const totalOutput = contributions
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Encapsulate conditionals
+### Đóng gói các điều kiện
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 if (subscription.isTrial || account.balance > 0) {
@@ -828,7 +831,7 @@ if (subscription.isTrial || account.balance > 0) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function canActivateService(subscription: Subscription, account: Account) {
@@ -842,9 +845,9 @@ if (canActivateService(subscription, account)) {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Avoid negative conditionals
+### Tránh điều kiện tiêu cực
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function isEmailNotUsed(email: string): boolean {
@@ -856,10 +859,10 @@ if (isEmailNotUsed(email)) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
-function isEmailUsed(email): boolean {
+function isEmailUsed(email: string): boolean {
   // ...
 }
 
@@ -870,11 +873,12 @@ if (!isEmailUsed(node)) {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Avoid conditionals
+### Tránh các câu điều kiện
 
-This seems like an impossible task. Upon first hearing this, most people say, "how am I supposed to do anything without an `if` statement?" The answer is that you can use polymorphism to achieve the same task in many cases. The second question is usually, "well that's great but why would I want to do that?" The answer is a previous clean code concept we learned: a function should only do one thing. When you have classes and functions that have `if` statements, you are telling your user that your function does more than one thing. Remember, just do one thing.
+Đây được xem như là một việc không thể. Khi nghe điều này lần đầu, hầu hết mọi người đều nói, "Làm thế nào mà tôi có thể làm gì đó mà không dùng câu điều `if`?" Câu trả lời là bạn có thể sử dụng tính đa hình để đạt được cùng nhiệm vụ trong nhiều trường hợp mà không cần dùng tới các câu điều kiện. Câu hỏi thường gặp thứ hai là "Nghe có vẻ tuyệt, nhưng tại sao tôi nên làm điều đó?" Câu trả lời là một định nghĩa mã sạch ở trên đã mô tả mỗi hàm chỉ nên làm một việc. Khi bạn có các lớp và các hàm mà chúng có câu điều kiện `if`, bạn đang nói với người dùng của mình rằng hàm của bạn làm nhiều hơn một thứ. Hãy nhớ, chỉ làm một việc.
 
-**Bad:**
+
+**Chưa tốt:**
 
 ```ts
 class Airplane {
@@ -900,7 +904,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 abstract class Airplane {
@@ -935,13 +939,15 @@ class Cessna extends Airplane {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Avoid type checking
+### Tránh việc kiểm tra kiểu dữ liệu
 
-TypeScript is a strict syntactical superset of JavaScript and adds optional static type checking to the language.
-Always prefer to specify types of variables, parameters and return values to leverage the full power of TypeScript features.
-It makes refactoring more easier.
+TypeScript là một siêu cú pháp ngữ kiểu soát kiểu dữ liệu chặt chẽ cho JavaScript và thêm các tùy chọn tùy chỉnh kiểm tra kiểu dữ liệu.
 
-**Bad:**
+Luôn luôn ưu tiên chỉ định chính xác kiểu dữ liệu của các biến, tham số và kiểu trả về để tận dụng tối đa sức mạnh của các tính năng được cung cấp bởi TypeScript.
+
+Nó làm cho việc tái cấu trúc code dễ dàng hơn.
+
+**Chưa tốt:**
 
 ```ts
 function travelToTexas(vehicle: Bicycle | Car) {
@@ -953,7 +959,7 @@ function travelToTexas(vehicle: Bicycle | Car) {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 type Vehicle = Bicycle | Car;
