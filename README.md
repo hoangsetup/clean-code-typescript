@@ -971,21 +971,21 @@ function travelToTexas(vehicle: Vehicle) {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Don't over-optimize
+### Đừng quá chú tâm vào việc tối ưu
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of times, if you are optimizing then you are just wasting your time. There are good [resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) for seeing where optimization is lacking. Target those in the meantime, until they are fixed if they can be.
+Những trình duyệt web hiện đại đã thực hiện tối ưu hóa rất nhiều trong quá trình thực thi. Nhiều lúc, nếu bạn đang cố tối ưu hóa gì đó thì có thể bạn đang chỉ lãng phí thời gian của mình. Đây là một [tài liệu](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers) mô tả những nơi thiếu sự tối ưu hóa. Cứ ghi nhớ những phần đó, cho đến khi họ sửa được chúng, nếu có thể.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// Ở những trình duyệt cũ, mỗi lần lặp  việc không lưu lại giá trị `list.length` có thể làm tốn thêm chi phí
+// bởi vì giá trị của `list.length` sẽ được tính toán lại. Ở những trình duyệt hiện đại, điều này đã được tối ưu.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 for (let i = 0; i < list.length; i++) {
@@ -995,12 +995,13 @@ for (let i = 0; i < list.length; i++) {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Remove dead code
+### Loại bỏ code không được sử dụng
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in your codebase.
-If it's not being called, get rid of it! It will still be safe in your version history if you still need it.
+Giữ lại các đoạn code mà không sử dụng cũng tệ như việc lặp code. Không có lý do gì để giữ chúng lại trong codebase của bạn.
 
-**Bad:**
+Nếu nó không được gọi, bỏ nó đi! Nó vẫn sẽ an toàn trong lịch sử sửa đổi code nếu bạn vẫn còn cần tới nó.
+
+**Chưa tốt:**
 
 ```ts
 function oldRequestModule(url: string) {
@@ -1015,7 +1016,7 @@ const req = requestModule;
 inventoryTracker('apples', req, 'www.inventory-awesome.io');
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function requestModule(url: string) {
@@ -1028,18 +1029,18 @@ inventoryTracker('apples', req, 'www.inventory-awesome.io');
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Use iterators and generators
+### Sử dụng biến lặp(iterator) và bộ sinh(generator)
 
-Use generators and iterables when working with collections of data used like a stream.  
-There are some good reasons:
+Sử dụng generators và iterables khi làm việc với các mảng dữ liệu như làm việc với một luồng(stream) dữ liệu.
 
-- decouples the callee from the generator implementation in a sense that callee decides how many
-items to access
-- lazy execution, items are streamed on demand
-- built-in support for iterating items using the `for-of` syntax
-- iterables allow to implement optimized iterator patterns
+Có một vài lý do tốt:
 
-**Bad:**
+- Tách đối tượng được gọi (callee) khỏi tiến trình khởi tạo nghĩa là đối tượng được gọi sẽ quyết định có bao nhiều phần tử được truy cập.
+- Tải chậm (lazy load), các phần từ được truyền lại theo yêu cầu
+- Mặc định hỗ trợ lặp qua các phần tử bằng cách sử dụng cú pháp `for-of`
+- iterables cho phép thực hiện các mẫu lặp (iterator patterns) đã được tối ưu hóa
+
+**Chưa tốt:**
 
 ```ts
 function fibonacci(n: number): number[] {
@@ -1058,15 +1059,15 @@ function print(n: number) {
   fibonacci(n).forEach(fib => console.log(fib));
 }
 
-// Print first 10 Fibonacci numbers.
+// In ra 10 số Fibonacci đầu tiên.
 print(10);
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
-// Generates an infinite stream of Fibonacci numbers.
-// The generator doesn't keep the array of all numbers.
+// Khởi tạo một dãy stream vô hạn các số Fibonacci
+// Bộ sinh (generator) không giữ mảng của tất cả các số.
 function* fibonacci(): IterableIterator<number> {
   let [a, b] = [0, 1];
 
@@ -1079,18 +1080,16 @@ function* fibonacci(): IterableIterator<number> {
 function print(n: number) {
   let i = 0;
   for (const fib of fibonacci()) {
-    if (i++ === n) break;  
+    if (i++ === n) break;
     console.log(fib);
   }  
 }
 
-// Print first 10 Fibonacci numbers.
+// In ra 10 số Fibonacci đầu tiên.
 print(10);
 ```
 
-There are libraries that allow working with iterables in a similar way as with native arrays, by
-chaining methods like `map`, `slice`, `forEach` etc. See [itiriri](https://www.npmjs.com/package/itiriri) for
-an example of advanced manipulation with iterables (or [itiriri-async](https://www.npmjs.com/package/itiriri-async) for manipulation of async iterables).
+Đây là một số thư viện cho phép làm việc với các biến lặp với cách quen thuộc như làm việc với các mảng thuông thường, bằng các phương thức chuỗi (chaining methods) như `map`, `slice`, `forEach` ... Xem thêm [itiriri](https://www.npmjs.com/package/itiriri) - một ví dụ thao tác nâng cao với các biến lặp (hay [itiriri-async](https://www.npmjs.com/package/itiriri-async) - thao tác với các biến lặp bất động bộ).
 
 ```ts
 import itiriri from 'itiriri';
