@@ -1110,21 +1110,19 @@ itiriri(fibonacci())
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Objects and Data Structures
+## Đối tượng và cấu trúc dữ liệu
 
-### Use getters and setters
+### Sử dụng getter và setter
 
-TypeScript supports getter/setter syntax.
-Using getters and setters to access data from objects that encapsulate behavior could be better than simply looking for a property on an object.
-"Why?" you might ask. Well, here's a list of reasons:
+Typescript hỗ trợ cú pháp getter/setter. Việc sử dụng getter và setter để đóng gói các hành vi khi làm việc với dữ liệu của object sẽ tốt hơn việc đơn giản lấy một một thuộc trên một đối tượng. Bạn có thể hỏi "Tại sao?". Tốt, đây là danh sách những lý do:
 
-- When you want to do more beyond getting an object property, you don't have to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a server.
+- Khi bạn muốn làm nhiều hơn ngoài việc có được một thuộc tính của đối tượng, bạn không cần phải tìm kiếm và thay đổi mọi chỗ lấy thuộc tính đó trong codebase của bạn.
+- Đơn giản để thêm vào các sự kiểm soát hợp lệ khi làm việc với một `set`.
+- Đóng gói các logic nội bộ.
+- Dễ thêm vào logging và xử lý lỗi khi sét hay lấy giá trị.
+- Bạn có thể thực hiện việc tải chậm các thuộc tính của đối tượng, giả sử nó được lấy từ máy chủ.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 type BankAccount = {
@@ -1145,7 +1143,7 @@ if (value < 0) {
 account.balance = value;
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class BankAccount {
@@ -1166,10 +1164,10 @@ class BankAccount {
   // ...
 }
 
-// Now `BankAccount` encapsulates the validation logic.
-// If one day the specifications change, and we need extra validation rule,
-// we would have to alter only the `setter` implementation,
-// leaving all dependent code unchanged.
+// Giờ `BankAccount` đóng gói logic kiểm soát dữ liệu.
+// Nếu một ngày các yêu cầu thay đổi, và chúng ta cần thêm vào các quy tắc kiểm soát,
+// chúng ta sẽ chỉ thực hiện sửa đổi ở `setter`,
+// giữ nguyên tất cả các đoạn mã phụ thuộc.
 const account = new BankAccount();
 account.balance = 100;
 ```
