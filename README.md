@@ -1174,11 +1174,11 @@ account.balance = 100;
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Make objects have private/protected members
+### Tạo ra những đối tượng có thuộc tính private/protected
 
-TypeScript supports `public` *(default)*, `protected` and `private` accessors on class members.  
+TypeScript hỗ trợ các kiểu truy cập tới thuộc tính của lớp: `public` *(mặc định)*, `protected` và `private`. 
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 class Circle {
@@ -1198,7 +1198,7 @@ class Circle {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class Circle {
@@ -1217,12 +1217,12 @@ class Circle {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Prefer immutability
+### ƯU tiên tính bất biến
 
-TypeScript's type system allows you to mark individual properties on an interface / class as *readonly*. This allows you to work in a functional way (unexpected mutation is bad).  
-For more advanced scenarios there is a built-in type `Readonly` that takes a type `T` and marks all of its properties as readonly using mapped types (see [mapped types](https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types)).
+Hệ thống kiểu dữ liệu của TypeScript cho phép bạn đánh dấu những thuộc tính riêng lẻ của một interface / lớp là *chỉ đọc* (readonly). Điều này cho phép làm việc theo kiểu hướng hàm (những đột biến bất ngờ là không tốt).
+Đối với các kịch bản nâng cao, có một kiểu dữ liệu được tích hợp sẵn `Readonly` trong TypeScript, kiểu dữ liệu này sẽ trả lại kiểu dữ liệu `T` và biến tất cả các thuộc tính của của `T` thành kiểu chỉ đọc bằng cách sử dụng kiểu ánh xạ (xem thêm [mapped types](https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types)).
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 interface Config {
@@ -1232,7 +1232,7 @@ interface Config {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 interface Config {
@@ -1242,10 +1242,9 @@ interface Config {
 }
 ```
 
-Case of Array, you can create a read-only array by using `ReadonlyArray<T>`.
-do not allow changes such as `push()` and `fill()`, but can use features such as `concat()` and `slice()` that do not change the value.
+Trường hợp của Array, bạn có thể tạo ra một mảng chỉ đọc bằng cách sử dụng `ReadonlyArray<T>`. Không cho phép các thay đổi như `push()` và `fill()`, nhưng có thể sử dụng các tính năng như là `concat()` và `slice()`, những tính năng này không làm thay đổi dữ liệu.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 const array: number[] = [ 1, 3, 5 ];
@@ -1253,7 +1252,7 @@ array = []; // error
 array.push(100); // array will updated
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 const array: ReadonlyArray<number> = [ 1, 3, 5 ];
@@ -1261,7 +1260,8 @@ array = []; // error
 array.push(100); // error
 ```
 
-Declaring read-only arguments in [TypeScript 3.4 is a bit easier](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#improvements-for-readonlyarray-and-readonly-tuples).
+Khởi tạo các tham số chỉ đọc in [TypeScript 3.4 sẽ dễ dàng hơn một chút](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#improvements-for-readonlyarray-and-readonly-tuples)
+
 
 ```ts
 function hoge(args: readonly string[]) {
@@ -1269,9 +1269,9 @@ function hoge(args: readonly string[]) {
 }
 ```
 
-Prefer [const assertions](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#const-assertions) for literal values.
+Ưu tiên [khẳng định hằng số](https://github.com/microsoft/TypeScript/wiki/What's-new-in-TypeScript#const-assertions) cho các giá trị biến số (literal values)
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 const config = {
@@ -1291,7 +1291,7 @@ const result = readonlyData(100);
 result.value = 200; // value is changed
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 // read-only object
@@ -1317,10 +1317,11 @@ result.value = 200; // error
 
 ### type vs. interface
 
-Use type when you might need a union or intersection. Use interface when you want `extends` or `implements`. There is no strict rule however, use the one that works for you.  
-For a more detailed explanation refer to this [answer](https://stackoverflow.com/questions/37233735/typescript-interfaces-vs-types/54101543#54101543) about the differences between `type` and `interface` in TypeScript.
+Sử dụng type khi bạn cần một hoặc kết hợp hoặc sự giao thoa. Sử dụng interface khi bạn muốn `extends` hoặc `implements`. Không có quy tắc nghiêm ngặt nào, tuy nhiên, hãy sử dụng nguyên tắc phù hợp với bạn.
+Để được giải thích chi tiết hơn, hãy tham khảo [câu trả lời này](https://stackoverflow.com/questions/37233735/typescript-interfaces-vs-types/54101543#54101543) về sự khác biệt giữa  `type` và `interface` trong TypeScript.
 
-**Bad:**
+
+**Chưa tốt:**
 
 ```ts
 interface EmailConfig {
@@ -1342,7 +1343,7 @@ type Shape = {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 
