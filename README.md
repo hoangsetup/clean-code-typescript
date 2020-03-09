@@ -1374,13 +1374,13 @@ class Square implements Shape {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Classes
+## Lớp
 
-### Classes should be small
+### Các lớp nên nhỏ gọn
 
-The class' size is measured by its responsibility. Following the *Single Responsibility principle* a class should be small.
+Quy mô của các lớp được đo bằng trách nhiệm của nó. Theo nguyên tắc *Trách nhiệm duy nhất(Single Responsibility principle)* một lớp nên nhỏ gọn.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 class Dashboard {
@@ -1403,7 +1403,7 @@ class Dashboard {
 
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class Dashboard {
@@ -1412,29 +1412,29 @@ class Dashboard {
   getVersion(): string { /* ... */ }
 }
 
-// split the responsibilities by moving the remaining methods to other classes
+// tách các trách nhiệm của lớp bằng cách chuyển những phương thức còn lại sang các lớp khác
 // ...
 ```
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### High cohesion and low coupling
+### Sự gắn kết cao và sự móc nối thấp(High cohesion and low coupling)
 
-Cohesion defines the degree to which class members are related to each other. Ideally, all fields within a class should be used by each method.
-We then say that the class is *maximally cohesive*. In practice, this however is not always possible, nor even advisable. You should however prefer cohesion to be high.  
+Sự gắn kết xác định mức độ các thành phần (thuộc tính, phương thức) của lớp có liên quan với nhau. Lý tưởng nhất là, mỗi phương thức của lớp đều sử dụng tất cả các thuộc tính của một lớp.
+Chúng ta gọi lớp đó là *gắn kết tối đa* (maximally cohesive). Trong thực tế, điều này không phải lúc nào cũng có thể đạt được, thậm chí là không nên. Tuy nhiên, bạn nên ưu tiên sự gắn kết cao.
 
-Coupling refers to how related or dependent are two classes toward each other. Classes are said to be low coupled if changes in one of them doesn't affect the other one.  
-  
-Good software design has **high cohesion** and **low coupling**.
+Sự móc nối đề cập tới mức độ liên quan hay phụ thuộc giữa hai lớp với nhau. Các lớp được cho là có sự móc nối thấp nếu sự thay đổi của một trong số chúng không ảnh hưởng tới những lớp khác.
 
-**Bad:**
+Một thiết kết phần phầm tốt có *Sự gắn kết cao* và *Sự móc nối thấp*.
+
+**Chưa tốt:**
 
 ```ts
 class UserManager {
-  // Bad: each private variable is used by one or another group of methods.
-  // It makes clear evidence that the class is holding more than a single responsibility.
-  // If I need only to create the service to get the transactions for a user,
-  // I'm still forced to pass and instance of `emailSender`.
+  // Chưa tốt: một thuộc tính riêng được sử dụng bởi một hoặc một nhóm phương thức khác.
+  // Điều này là bằng chứng rõ ràng rằng lớp đang nắm giữ nhiều hơn một trách nhiệm.
+  // Nếu tôi chỉ muốn tạo một dịch vụ để lấy các phiên giao dịch của csdl cho một người dùng,
+  // tôi bắt buộc vẫn phải truyền vào và khởi một đối tượng `emailSender`.
   constructor(
     private readonly db: Database,
     private readonly emailSender: EmailSender) {
@@ -1462,7 +1462,7 @@ class UserManager {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class UserService {
