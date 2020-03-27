@@ -1498,19 +1498,19 @@ class UserNotifier {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Prefer composition over inheritance
+### Ưu tiên sự cấu thành(composition) hơn thừa kế
 
-As stated famously in [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four, you should *prefer composition over inheritance* where you can. There are lots of good reasons to use inheritance and lots of good reasons to use composition. The main point for this maxim is that if your mind instinctively goes for inheritance, try to think if composition could model your problem better. In some cases it can.  
-  
-You might be wondering then, "when should I use inheritance?" It depends on your problem at hand, but this is a decent list of when inheritance makes more sense than composition:
+Như một phát biểu nổi tiếng của [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) bởi Gang of Four, bạn nên *Ưu tiên sự cấu thành hơn thừa kế* khi bạn có thể. Có nhiều lý do để sử dụng tính kế thừa và cũng có nhiều lý do để sử dụng sự cấu thành. Điểm chính của phần mục này là nếu bạn có suy nghĩ sẽ sử dụng sự kế thừa, hãy thử nghĩ xem liệu sử dụng sự cấu thành có thể mô hình hóa vấn đề của bạn tốt hơn hay không. Trong một số trường hợp sử dụng sự cấu thành sẽ tốt hơn dùng sự kế thừa.
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a" relationship (Human->Animal vs. User->UserDetails).
+Sau khi đọc đoạn trên, bạn sẽ nghĩ "khi nào tôi nên sử dụng sự kế thừa?". Nó phụ thuộc vào vấn đề mà bạn đang gặp, nhưng đây là một vài vấn đề, mà ở đó sử dụng kế thừa sẽ tốt hơn là sử dụng sự cấu thành:
 
-2. You can reuse code from the base classes (Humans can move like all animals).
+1. Sự kế thừa của bạn thể hiện mối quan hệ "là một" (is-a) và không phải mối quan hệ "có một" (has-a) (Human -> Animal - Human is a Animal với User -> UserDetails - User has UserDetails).
 
-3. You want to make global changes to derived classes by changing a base class. (Change the caloric expenditure of all animals when they move).
+2. Bạn có thể tái sử dụng mã từ lớp cơ sở (Người - Humans có thể di chuyển như tất cả các động vật - animals).
 
-**Bad:**
+3. Bạn muốn thực hiện thay đổi toàn cục cho toàn bộ các lớp đã kế thừa từ lớp cơ sở bằng cách thay đổi lớp cơ sở. (Thay đổi cách tính lượng calo tiêu hao của tất cả các động vật khi chúng di chuyển).
+
+**Chưa tốt:**
 
 ```ts
 class Employee {
@@ -1522,7 +1522,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Chưa tốt, bởi vì Employees "có" (have - "has a") thông tin thuế. Và EmployeeTaxData không phải là một (not is a) kiểu Employee
 class EmployeeTaxData extends Employee {
   constructor(
     name: string,
@@ -1536,7 +1536,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class Employee {
