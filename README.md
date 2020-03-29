@@ -1567,11 +1567,11 @@ class EmployeeTaxData {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Use method chaining
+### Sử dụng phương thức chuỗi
 
-This pattern is very useful and commonly used in many libraries. It allows your code to be expressive, and less verbose. For that reason, use method chaining and take a look at how clean your code will be.
+Đây là một mẫu thiết kế rất tiện dụng và được dùng bởi nhiều thư viện. Nó cho phép code của bạn dễ hiểu hơn, và ngắn gọn hơn. Vì lý do đó, hãy sử dụng phương thức chuỗi và xem code của bạn trông sạch sẽ thế nào.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 class QueryBuilder {
@@ -1608,7 +1608,7 @@ queryBuilder.orderBy('firstName', 'lastName');
 const query = queryBuilder.build();
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class QueryBuilder {
