@@ -1651,11 +1651,11 @@ const query = new QueryBuilder()
 
 ## SOLID
 
-### Single Responsibility Principle (SRP)
+### Nguyên tắc trách nhiệm duy nhất(SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class to change". It's tempting to jam-pack a class with a lot of functionality, like when you can only take one suitcase on your flight. The issue with this is that your class won't be conceptually cohesive and it will give it many reasons to change. Minimizing the amount of times you need to change a class is important. It's important because if too much functionality is in one class and you modify a piece of it, it can be difficult to understand how that will affect other dependent modules in your codebase.
+Như đã nêu trong cuốn Clean Code, "Không nên có nhiều hơn một lý do để một lớp thay đổi". Sẽ thấy vui khi đóng gói một lớp với rất nhiều chức năng, giống như bạn chỉ mang theo một chiếc vali theo chuyến bay của mình. Có một vấn đề với điều này, lớp của bạn sẽ không gắn kết về mặt khái niệm (tên lớp và chức năng), dẫn tới sẽ có nhiều lý do để thay đổi lớp của bạn. Việc giảm thiểu số lần bạn cần thay đổi một lớp là rất quan trọng. Điều này rất quan trọng vì nếu bạn có quá nhiều chức năng trong một lớp và khi bạn sửa đổi một phần của nó, bạn sẽ khó kiểm soát được những ảnh hưởng của thay đổi đến các module phụ thuộc khác trong mã của bạn.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 class UserSettings {
@@ -1674,7 +1674,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class UserAuth {
@@ -1704,11 +1704,11 @@ class UserSettings {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Open/Closed Principle (OCP)
+### Nguyên tắc Mở/Đóng (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification." What does that mean though? This principle basically states that you should allow users to add new functionalities without changing existing code.
+Theo Bertrand Meyer, "các thực thể cấu thành phần mềm(các lớp, các module, các hàm, v.v) nên được thiết kế Mở để có thể mở rộng, nhưng cũng đồng thời Đóng để sửa đổi". Điều đó có nghĩa là gì? Về cơ bản, nguyên tắc này nói rằng bạn nên cho phép người dùng (lập trình viên) thêm mới các chức năng mà không làm thay đổi mã đã tồn tại.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 class AjaxAdapter extends Adapter {
@@ -1734,10 +1734,10 @@ class HttpRequester {
   async fetch<T>(url: string): Promise<T> {
     if (this.adapter instanceof AjaxAdapter) {
       const response = await makeAjaxCall<T>(url);
-      // transform response and return
+      // biến đổi response và trả lại
     } else if (this.adapter instanceof NodeAdapter) {
       const response = await makeHttpCall<T>(url);
-      // transform response and return
+      // biến đổi response và trả lại
     }
   }
 }
@@ -1751,13 +1751,13 @@ function makeHttpCall<T>(url: string): Promise<T> {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 abstract class Adapter {
   abstract async request<T>(url: string): Promise<T>;
 
-  // code shared to subclasses ...
+  // mã được chia sẻ tới các lớp con...
 }
 
 class AjaxAdapter extends Adapter {
