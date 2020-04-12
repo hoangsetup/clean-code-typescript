@@ -1797,13 +1797,13 @@ class HttpRequester {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Liskov Substitution Principle (LSP)
+### Nguyên tắc thay thế Liskov(LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.)." That's an even scarier definition.  
-  
-The best explanation for this is if you have a parent class and a child class, then the parent class and child class can be used interchangeably without getting incorrect results. This might still be confusing, so let's take a look at the classic Square-Rectangle example. Mathematically, a square is a rectangle, but if you model it using the "is-a" relationship via inheritance, you quickly get into trouble.
+Đây là một thuật ngữ đáng sợ cho một khái niệm rất đơn giản. Nguyên văn nó được viết là "Nếu S là một kiểu con của T, thì các đối tượng loại T có thể được thay thế bằng các đối tượng loại S (nghĩa là các đối tượng loại S có thể thay thế các đối tượng thuộc loại T) mà không làm thay đổi bất kỳ thuộc tính mong muốn nào của chương trình đó (tính đúng đắn, nhiệm vụ được thực hiện, v.v).". Mô tả đó thậm chí còn đáng sợ hơn.
 
-**Bad:**
+Giải thích dễ hiểu nhất cho điều nay là, nếu bạn có một lớp cha và một lớp con, thì lớp cha và lớp con có thể được sử dụng thay thế cho nhau mà vẫn nhận được kết quả chính xác. Điều này vẫn có thể gây nhầm lẫn, vì vậy hãy xem xét một ví dụ cổ điển Hình chữ nhật - Hình vuông. Về mặt toán học, hình vuông là một hình chữ nhật, nhưng nếu bạn mô hình hóa Hình vuông bằng mối quan hệ "is-a" (là một) thông qua phép kế thừa, bạn sẽ nhanh chóng nhận ra rắc rối.
+
+**Chưa tốt:**
 
 ```ts
 class Rectangle {
@@ -1855,7 +1855,7 @@ function renderLargeRectangles(rectangles: Rectangle[]) {
     const area = rectangle
       .setWidth(4)
       .setHeight(5)
-      .getArea(); // BAD: Returns 25 for Square. Should be 20.
+      .getArea(); // Lỗi: Nếu đối tượng là area là Square, giá trị trả lại sẽ là 25. Kết quả mong muốn là 20
     rectangle.render(area);
   });
 }
@@ -1864,7 +1864,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 abstract class Shape {
@@ -1914,12 +1914,13 @@ renderLargeShapes(shapes);
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Interface Segregation Principle (ISP)
+### Nguyên tắc phân tách giao diện(ISP)
 
-ISP states that "Clients should not be forced to depend upon interfaces that they do not use.". This principle is very much related to the Single Responsibility Principle.
-What it really means is that you should always design your abstractions in a way that the clients that are using the exposed methods do not get the whole pie instead. That also include imposing the clients with the burden of implementing methods that they don’t actually need.
+ISP tuyên bố rằng "Các client không nên phục thuộc vào các interface mà chúng không sử dụng.". Nguyên tắc này liên quan rất nhiều tới nguyên tắc Nguyên tắc trách nhiệm duy nhất(SRP).
 
-**Bad:**
+Thực sự, điều này có nghĩa là bạn luôn thiết kết các bản tóm tắt, giao diện (abstractions, interface) theo cách mà các client đang sử dụng chúng chỉ phải biết về những gì chúng sẽ thực hiện. Điều đó cũng bao gồm việc áp đặt các client chỉ thực hiện các phương thức mà họ thực sự cần.
+
+**Chưa tốt:**
 
 ```ts
 interface SmartPrinter {
@@ -1957,7 +1958,7 @@ class EconomicPrinter implements SmartPrinter {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 interface Printer {
@@ -1995,19 +1996,19 @@ class EconomicPrinter implements Printer {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Dependency Inversion Principle (DIP)
+### Nguyên tắc đảo ngược sự phục thuộc(DIP)
 
-This principle states two essential things:
+Nguyên tắc này có hai điều thiết yếu:
 
-1. High-level modules should not depend on low-level modules. Both should depend on abstractions.
+1. Các module cấp cao không nên phục thuộc vào các module cấp thấp. Cả hai nên phụ thuộc vào lớp trừu tượng.
 
-2. Abstractions should not depend upon details. Details should depend on abstractions.
+2. Lớp trừu tượng không nên phục thuộc vào các chi tiết. Các chi tiết nên phục thuộc vào lớp trừu tượng.
 
-This can be hard to understand at first, but if you've worked with Angular, you've seen an implementation of this principle in the form of Dependency Injection (DI). While they are not identical concepts, DIP keeps high-level modules from knowing the details of its low-level modules and setting them up. It can accomplish this through DI. A huge benefit of this is that it reduces the coupling between modules. Coupling is a very bad development pattern because it makes your code hard to refactor.  
-  
-DIP is usually achieved by a using an inversion of control (IoC) container. An example of a powerful IoC container for TypeScript is [InversifyJs](https://www.npmjs.com/package/inversify)
+Điều này ban đầu có thể khó hiểu, nhưng nếu đã làm việc với Angular, bạn sẽ thấy nguyên tắc này được thực hiện dưới dạng Dependency Injection (DI). Mặc dù chúng không phải là các khái niệm giống hệt nhau, nhưng DIP cũng giữ có các module cấp cao không biết chi tiết của các module cấp thấp và các thiết lập của chúng. Nó có thể thực hiện điều này thông qua DI. Một lợi ích lớn nhất của việc này là nó làm giảm sự ghép nối giữa các module. Khớp nối (phục thuộc) là một mô hình phát triền không tốt vì nó làm cho mã của bạn khó tái cấu trúc.
 
-**Bad:**
+DIP thường đạt được bằng cách sử dụng bộ chứa điều khiển đảo ngược (inversion of control - IoC). Một ví dụ IoC mạnh mẽ của Typescript là [InversifyJs](https://www.npmjs.com/package/inversify)
+
+**Chưa tốt:**
 
 ```ts
 import { readFile as readFileCb } from 'fs';
@@ -2021,14 +2022,14 @@ type ReportData = {
 
 class XmlFormatter {
   parse<T>(content: string): T {
-    // Converts an XML string to an object T
+    // Chuyển đổi một XML string thành một đối tượng có kiểu T
   }
 }
 
 class ReportReader {
 
-  // BAD: We have created a dependency on a specific request implementation.
-  // We should just have ReportReader depend on a parse method: `parse`
+  // Chưa tốt: Chúng tạo khởi tạo một phụ thuộc bằng việc thực hiện một yêu cầu cụ thể.
+  // Chúng ta chỉ nên có một ReportReader phụ thuộc vào một phương thức phân tích cú pháp: `parse`
   private readonly formatter = new XmlFormatter();
 
   async read(path: string): Promise<ReportData> {
@@ -2060,14 +2061,14 @@ interface Formatter {
 
 class XmlFormatter implements Formatter {
   parse<T>(content: string): T {
-    // Converts an XML string to an object T
+    // Chuyển đổi một XML string thành một đối tượng có kiểu T
   }
 }
 
 
 class JsonFormatter implements Formatter {
   parse<T>(content: string): T {
-    // Converts a JSON string to an object T
+    // Chuyển đổi một JSON string thành một đối tượng có kiểu T
   }
 }
 
@@ -2085,7 +2086,7 @@ class ReportReader {
 const reader = new ReportReader(new XmlFormatter());
 await report = await reader.read('report.xml');
 
-// or if we had to read a json report
+// hoặc nếu chúng ta phải đọc một báo cáo từ dạng json
 const reader = new ReportReader(new JsonFormatter());
 await report = await reader.read('report.json');
 ```
