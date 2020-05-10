@@ -2093,13 +2093,13 @@ await report = await reader.read('report.json');
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Testing
+## Kiểm thử
 
-Testing is more important than shipping. If you have no tests or an inadequate amount, then every time you ship code you won't be sure that you didn't break anything.
-Deciding on what constitutes an adequate amount is up to your team, but having 100% coverage (all statements and branches)
-is how you achieve very high confidence and developer peace of mind. This means that in addition to having a great testing framework, you also need to use a good [coverage tool](https://github.com/gotwarlost/istanbul).
+Kiểm thử quan trọng hơn việc gửi code. Nếu bạn không có kiểm thử hoặc không đạt độ phủ (coverage) yêu cầu, thì mỗi lần bạn gửi code, bạn sẽ không thể chắc chắn rằng bạn đã không làm hỏng bất cứ thứ gì.
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](http://jstherightway.org/#testing-tools) with typings support for TypeScript, so find one that your team prefers. When you find one that works for your team, then aim to always write tests for every new feature/module you introduce. If your preferred method is Test Driven Development (TDD), that is great, but the main point is to just make sure you are reaching your coverage goals before launching any feature, or refactoring an existing one.  
+Quyết định độ phủ là bao nhiêu phụ thuộc vào nhóm làm việc của bạn, nhưng nếu độ phủ yêu cầu là 100% (ở tất các câu lệnh và các đoạn rẽ nhánh) có nghĩa là bạn và những người phát triền cùng sẽ rất an tâm. Điều này có nghĩa, ngoài một khung kiểm thử tốt bạn cũng cần một [công cụ đo độ phủ tốt](https://github.com/gotwarlost/istanbul).
+
+Không có lý do gì để bạn không viết kiếm thử. Có nhiều [công cụ kiểm thử tốt](http://jstherightway.org/#testing-tools) với sự định kiểu hỗ trợ cho TypeScrip, vì vậy hay tìm ra một công cụ kiểm thử mà nhóm bạn ưa thích. Khi bạn là người tìm ra hoặc quyết định công cụ kiểm thử cho nhóm, sau đó hãy luôn hướng tới việc viết kiểm thử cho những tính năng/mô-đun mới mà bạn định phát triển. Nếu phương phát phát triển yêu thích của bạn là TDD (Phát triển hướng kiểm thử), điều đó thật tuyệt vời, nhưng điểm chính là chỉ cần bạn đảm bảo được độ phủ yêu cầu trước khi phát hành bất kỳ tính năng nào hoặc là tái cấu trúc một tính năng hiện có.  
 
 ### The three laws of TDD
 
