@@ -2111,19 +2111,19 @@ Không có lý do gì để bạn không viết kiếm thử. Có nhiều [công
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### F.I.R.S.T. rules
+### Quy tắc F.I.R.S.T.
 
-Clean tests should follow the rules:
+Kiểm thử tốt tuân theo các quy tắc sau:
 
-- **Fast** tests should be fast because we want to run them frequently.
+- **Nhanh(Fast)** Việc thực thi kiểm thử phải nhanh vì chúng ta muốn chạy chúng thường xuyên.
 
-- **Independent** tests should not depend on each other. They should provide same output whether run independently or all together in any order.
+- **Độc lập(Independent)** Các kiểm thử không nên phụ thuộc lẫn nhau. Chúng nên cho ra cùng một kết quả cho dù chúng được chạy độc lập hay tất cả cùng nhau theo thứ tự bất kỳ.
 
-- **Repeatable** tests should be repeatable in any environment and there should be no excuse for why they fail.
+- **Có thể lặp lại(Repeatable)** Các kiểm thử có thể được lặp lại ở bất kỳ môi trường nào và không có lý do gì làm chúng không đạt(fail).
 
-- **Self-Validating** a test should answer with either *Passed* or *Failed*. You don't need to compare log files to answer if a test passed.
+- **Tự kiểm chứng(Self-Validating)** Một kiểm thử sẽ trả lời bằng *Đạt* hoặc *Không đạt*. Bạn không cần so sánh các tệp nhật ký để trả lời một kiểm thử đã *đạt*.
 
-- **Timely** unit tests should be written before the production code. If you write tests after the production code, you might find writing tests too hard.
+- **Xảy ra đúng lúc(Timely)** Kiểm thử đơn vị nên được viết trước logic code. Nếu bạn viết kiểm thử sau logic code, bạn có thể sẽ thấy việc viết kiểm thử lúc này là quá khó.
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
