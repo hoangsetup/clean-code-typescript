@@ -2101,13 +2101,13 @@ Quyết định độ phủ là bao nhiêu phụ thuộc vào nhóm làm việc 
 
 Không có lý do gì để bạn không viết kiếm thử. Có nhiều [công cụ kiểm thử tốt](http://jstherightway.org/#testing-tools) với sự định kiểu hỗ trợ cho TypeScrip, vì vậy hay tìm ra một công cụ kiểm thử mà nhóm bạn ưa thích. Khi bạn là người tìm ra hoặc quyết định công cụ kiểm thử cho nhóm, sau đó hãy luôn hướng tới việc viết kiểm thử cho những tính năng/mô-đun mới mà bạn định phát triển. Nếu phương phát phát triển yêu thích của bạn là TDD (Phát triển hướng kiểm thử), điều đó thật tuyệt vời, nhưng điểm chính là chỉ cần bạn đảm bảo được độ phủ yêu cầu trước khi phát hành bất kỳ tính năng nào hoặc là tái cấu trúc một tính năng hiện có.  
 
-### The three laws of TDD
+### Ba định luật cơ bản của TDD
 
-1. You are not allowed to write any production code unless it is to make a failing unit test pass.
+1. Bạn không được phép viết bất kỳ một logic code nào cho tới khi bạn có một kiểm thử bị fail.
 
-2. You are not allowed to write any more of a unit test than is sufficient to fail; and compilation failures are failures.
+2. Bạn không được phép viết thêm bất kỳ đoạn kiểm thử đơn vị nào mà 1 kiểm thử đang bị lỗi, hay trình biên dịch đang bị lỗi.
 
-3. You are not allowed to write any more production code than is sufficient to pass the one failing unit test.
+3. Bạn không được phép viết thêm bất kỳ một logic code nào mà đoạn mã trước đó đã làm một kiểm thử từ fail chuyển sang pass.
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
