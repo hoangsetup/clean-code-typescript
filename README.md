@@ -2127,11 +2127,11 @@ Kiểm thử tốt tuân theo các quy tắc sau:
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Single concept per test
+### Kiểm thử một điều kiện trên mỗi test
 
-Tests should also follow the *Single Responsibility Principle*. Make only one assert per unit test.
+Kiểm thử cũng nên được thiết kế theo nguyên tắc *Trách nhiện duy nhất*. Chỉ kiểm tra một điều kiện trên mỗi kiểm thử đơn vị.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 import { assert } from 'chai';
@@ -2152,7 +2152,7 @@ describe('AwesomeDate', () => {
 });
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 import { assert } from 'chai';
@@ -2177,11 +2177,11 @@ describe('AwesomeDate', () => {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### The name of the test should reveal its intention
+### Tên của kiểm thử nên thể hiện được ý định của nó
 
-When a test fail, its name is the first indication of what may have gone wrong.
+Khi một kiểm thử báo lỗi, tên của nó là dấu hiện đầu tiên cho biết vấn đề đang gặp là gì.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 describe('Calendar', () => {
@@ -2195,7 +2195,7 @@ describe('Calendar', () => {
 });
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 describe('Calendar', () => {
