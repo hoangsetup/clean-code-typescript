@@ -2211,15 +2211,15 @@ describe('Calendar', () => {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Concurrency
+## Xử lý bất động bộ
 
-### Prefer promises vs callbacks
+### Ưu tiên Promise hơn Callback
 
-Callbacks aren't clean, and they cause excessive amounts of nesting *(the callback hell)*.  
-There are utilities that transform existing functions using the callback style to a version that returns promises
-(for Node.js see [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original), for general purpose see [pify](https://www.npmjs.com/package/pify), [es6-promisify](https://www.npmjs.com/package/es6-promisify))
+Callback không rõ ràng, và chúng gây ra các đoạn mã lồng nhau quá nhiều - *(Địa ngục callback - The callback hell)*.
 
-**Bad:**
+Có nhiều tiện ích giúp cho việc chuyển đổi các hàm đang sử dụng phong cách callback thành các hàm trả về promise(với Node.js chúng ta có [`util.promisify`](https://nodejs.org/dist/latest-v8.x/docs/api/util.html#util_util_promisify_original), dùng chung cho JavaScript chúng ta có [pify](https://www.npmjs.com/package/pify), [es6-promisify](https://www.npmjs.com/package/es6-promisify))
+
+**Chưa tốt:**
 
 ```ts
 import { get } from 'request';
@@ -2250,7 +2250,7 @@ downloadPage('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', 'article.html'
 });
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 import { get } from 'request';
@@ -2269,16 +2269,17 @@ downloadPage('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', 'article.html'
   .catch(error => console.error(error));  
 ```
 
-Promises supports a few helper methods that help make code more conscise:  
+Promise hỗ trợ một vài phương thức giúp các đoạn mã ngắn gọn hơn:
 
-| Pattern                  | Description                                |  
-| ------------------------ | -----------------------------------------  |  
-| `Promise.resolve(value)` | Convert a value into a resolved promise.   |  
-| `Promise.reject(error)`  | Convert an error into a rejected promise.  |  
-| `Promise.all(promises)`  |Returns a new promise which is fulfilled with an array of fulfillment values for the passed promises or rejects with the reason of the first promise that rejects. |
-| `Promise.race(promises)`|Returns a new promise which is fulfilled/rejected with the result/error of the first settled promise from the array of passed promises. |
+| Phương thức              | Mô tả                                      |
+| ------------------------ | -----------------------------------------  |
+| `Promise.resolve(value)` | Chuyển đổi một giá trị thành một resolved promise.   | 
+| `Promise.reject(error)`  | Chuyển đổi một giá trị thành một rejected promise.   |
+| `Promise.all(promises)`  | Trả về một promise mới, thực hiện "đồng loạt" các `promises` được truyền vào. Giá trị của promise mới là mảng các giá trị của các `promises` hoặc sẽ nhận giá trị rejected là giá trị của promise đầu tiên trả về rejected.  |
+| `Promise.race(promises)`| Trả về một promise mới, với kết quả/lỗi là kết quả/lỗi của promise trong mảng `promises` trả về đầu tiên(sớm nhất). |
 
-`Promise.all` is especially useful when there is a need to run tasks in parallel. `Promise.race` makes it easier to implement things like timeouts for promises.
+`Promise.all` Đặc biệt hữu ích khi muốn các tác vụ được chạy song song.
+ `Promise.race` Giúp tạo ra các giới hạn thời gian thực thi cho các promise một cách dễ dàng.
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
