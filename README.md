@@ -2283,11 +2283,11 @@ Promise hỗ trợ một vài phương thức giúp các đoạn mã ngắn gọ
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await thậm chí còn tốt hơn Promises
 
-With `async`/`await` syntax you can write code that is far cleaner and more understandable than chained promises. Within a function prefixed with `async` keyword you have a way to tell the JavaScript runtime to pause the execution of code on the `await` keyword (when used on a promise).
+Với cú pháp `async`/`await` bạn có thể viết mã sạch hơn và dễ hiểu hơn nhiều so với sử dụng chuỗi promise. Trong một hàm, mà hàm đó có tiền tố `async`, bạn có thể hiểu rằng JavaScript sẽ "dừng" thực thi các đoạn mã cho tới khi các đoạn mã có từ khóa `await` được thực thi(sử dụng với hàm trả về một promise).
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 import { get } from 'request';
@@ -2305,7 +2305,7 @@ downloadPage('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', 'article.html'
   .catch(error => console.error(error));  
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 import { get } from 'request';
@@ -2320,7 +2320,7 @@ async function downloadPage(url: string, saveTo: string): Promise<string> {
   return response;
 }
 
-// somewhere in an async function
+// đâu đó trong một hàm có tiền tố async
 try {
   const content = await downloadPage('https://en.wikipedia.org/wiki/Robert_Cecil_Martin', 'article.html');
   console.log(content);
