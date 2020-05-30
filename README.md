@@ -2475,33 +2475,33 @@ try {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Formatting
+## Định dạng
 
-Formatting is subjective. Like many rules herein, there is no hard and fast rule that you must follow. The main point is *DO NOT ARGUE* over formatting. There are tons of tools to automate this. Use one! It's a waste of time and money for engineers to argue over formatting. The general rule to follow is *keep consistent formatting rules*.  
+Định dạng là một vấn đề chủ quan. Giống như nhiều quy tắc trong tài liêu này, không có quy tắc cứng nhắc hay bền vững nào mà bạn phải tuân theo. Điểm mấu chốt là *Không tranh luận(ARGUE)* khi xem xét các định dạng. Có rất nhiều công cụ để tự động hóa việc kiểm tra định dạng. Hãy chọn một công cụ cho dự án của bạn! Thật lãng phí thời gian và tiền bạc để các kỹ sư tranh luận về định dạng. Quy tắc chung phải tuân theo là *giữ cho các quy tắc định dạng nhất quán*.
 
-For TypeScript there is a powerful tool called [TSLint](https://palantir.github.io/tslint/). It's a static analysis tool that can help you improve dramatically the readability and maintainability of your code. There are ready to use TSLint configurations that you can reference in your projects:
+Với TypeScript chúng ta có một công cụ rất mạnh cho việc này - [TSLint](https://palantir.github.io/tslint/). Đây là một công cụ phân tích tĩnh, nó có thể giúp bạn cải thiện đáng kể chất lượng mã của bạn. Nếu bạn đã cài đặt TSLint, thì đây là một số cấu hình có sẵn bạn có thể tham khảo cho các dự án của mình:
 
-- [TSLint Config Standard](https://www.npmjs.com/package/tslint-config-standard) - standard style rules
+- [TSLint Config Standard](https://www.npmjs.com/package/tslint-config-standard) - Những định dạng tiêu chuẩn
 
-- [TSLint Config Airbnb](https://www.npmjs.com/package/tslint-config-airbnb) - Airbnb style guide
+- [TSLint Config Airbnb](https://www.npmjs.com/package/tslint-config-airbnb) - Quy tắc của Airbnb
 
-- [TSLint Clean Code](https://www.npmjs.com/package/tslint-clean-code) - TSLint rules inspired by the [Clean Code: A Handbook of Agile Software Craftsmanship](https://www.amazon.ca/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+- [TSLint Clean Code](https://www.npmjs.com/package/tslint-clean-code) - Những nguyên tắc được lấy cảm hứng từ [Clean Code: A Handbook of Agile Software Craftsmanship](https://www.amazon.ca/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
 
-- [TSLint react](https://www.npmjs.com/package/tslint-react) - lint rules related to React & JSX
+- [TSLint react](https://www.npmjs.com/package/tslint-react) - Các quy tắc liên quan tới React & JSX
 
-- [TSLint + Prettier](https://www.npmjs.com/package/tslint-config-prettier) - lint rules for [Prettier](https://github.com/prettier/prettier) code formatter
+- [TSLint + Prettier](https://www.npmjs.com/package/tslint-config-prettier) - Quy tắc cho công cụ [Prettier](https://github.com/prettier/prettier) định dạng mã
 
-- [ESLint rules for TSLint](https://www.npmjs.com/package/tslint-eslint-rules) - ESLint rules for TypeScript
+- [ESLint rules for TSLint](https://www.npmjs.com/package/tslint-eslint-rules) - Quy tắc của ESLint dành cho TypeScript
 
-- [Immutable](https://www.npmjs.com/package/tslint-immutable) - rules to disable mutation in TypeScript
+- [Immutable](https://www.npmjs.com/package/tslint-immutable) - Quy tắc để vô hiệu hóa các đột biên (mutation) trong TypeScript
 
-Refer also to this great [TypeScript StyleGuide and Coding Conventions](https://basarat.gitbook.io/typescript/styleguide) source.
+Một nguồn tham khảo tuyệt vời [TypeScript StyleGuide and Coding Conventions](https://basarat.gitbook.io/typescript/styleguide).
 
-### Use consistent capitalization
+### Nhất quán khi sử dụng viết hoa
 
-Capitalization tells you a lot about your variables, functions, etc. These rules are subjective, so your team can choose whatever they want. The point is, no matter what you all choose, just *be consistent*.
+Việc viết hoa cho bạn biết rất nhiều về các biến , hàm...của bạn. Những quy tắc này mang tính chủ quan, nhóm của bạn có thể tùy chọn nó. Vấn đề là, bất kể bạn chọn gì, chỉ cần *nhất quán*.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 const DAYS_IN_WEEK = 7;
@@ -2533,8 +2533,9 @@ type Animal = { /* ... */ }
 type Container = { /* ... */ }
 ```
 
-Prefer using `PascalCase` for class, interface, type and namespace names.  
-Prefer using `camelCase` for variables, functions and class members.
+Ưu tiên sử dụng `PascalCase` cho tên lớp, interface, kiểu và tên của các không gian tên(namespace).
+
+Ưu tiên sử dụng `camelCase` cho các tên biến, hàm, các thuộc tính của lớp.
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
