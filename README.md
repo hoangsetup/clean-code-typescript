@@ -2331,20 +2331,20 @@ try {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Error Handling
+## Xử lý lỗi
 
-Thrown errors are a good thing! They mean the runtime has successfully identified when something in your program has gone wrong and it's letting you know by stopping function
-execution on the current stack, killing the process (in Node), and notifying you in the console with a stack trace.
+Ném ra các lỗi là một ý tưởng tốt. Điều đó có nghĩa chương trình của bạn sẽ phát hiện được khi có lỗi gì đó xảy ra với chương trình và chương trình sẽ được dừng lại ngay tại ngăn xếp hiện tại của nó, tiến trình sẽ bị hủy (trong Node), và nó sẽ thông báo cho bạn ở cửa sổ dòng lệnh với thông tin của ngăn xếp.
 
-### Always use Error for throwing or rejecting
+### Luôn sử dụng kiểu Error khi muốn thể hiện một lỗi
 
-JavaScript as well as TypeScript allow you to `throw` any object. A Promise can also be rejected with any reason object.  
-It is advisable to use the `throw` syntax with an `Error` type. This is because your error might be caught in higher level code with a `catch` syntax.
-It would be very confusing to catch a string message there and would make
-[debugging more painful](https://basarat.gitbook.io/typescript/type-system/exceptions#always-use-error).  
-For the same reason you should reject promises with `Error` types.
+JavaScript cũng như TypeScript cho phép bạn `throw` mọi đối tượng. Một Promise cũng có thể trả về thất bại (rejected) với mọi đối tượng là lý do thất bại.
 
-**Bad:**
+Nên sử dụng cú pháp `throw` với kiểu là `Error`. Nên làm như vậy bởi vì, các lỗi của bạn có thể được bắt bằng cú pháp `catch` ở những đoạn code có level cao hơn.
+Nó sẽ là rất khó hiểu cho bạn nếu bạn chỉ bắt được một chuỗi ở đó và nó gây ra [Việc khó khăn khi gỡ lỗi](https://basarat.gitbook.io/typescript/type-system/exceptions#always-use-error).
+
+Vì lý do tương tự, khi muốn thông báo một Promise bị thất bại, bạn nên dùng kiểu `Error`.
+
+**Chưa tốt:**
 
 ```ts
 function calculateTotal(items: Item[]): number {
@@ -2356,7 +2356,7 @@ function get(): Promise<Item[]> {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function calculateTotal(items: Item[]): number {
@@ -2374,10 +2374,9 @@ async function get(): Promise<Item[]> {
 }
 ```
 
-The benefit of using `Error` types is that it is supported by the syntax `try/catch/finally` and implicitly all errors have the `stack` property which
-is very powerful for debugging.  
-There are also another alternatives, not to use the `throw` syntax and instead always return custom error objects. TypeScript makes this even easier.
-Consider following example:
+Lợi ích của việc sử dụng kiểu `Error` (và các mở rộng của nó) là nó được hỗ trợ bởi cú pháp `try/catch/finally` và đặc biệt tất cả các lỗi sẽ có thuộc tính `stack`, đó là thứ sẽ giúp ích rất nhiều khi bạn gỡ lỗi chương trình.
+Ngoài ra có một cách khác giúp không sử dụng cú pháp `throw` - Luôn trả về các đối tượng thể hiện lỗi có tùy chỉnh. TypeScript còn làm điều này dễ dàng hơn.
+Xem xét ví dụ sau:
 
 ```ts
 type Result<R> = { isError: false, value: R };
@@ -2394,15 +2393,16 @@ function calculateTotal(items: Item[]): Failable<number, 'empty'> {
 }
 ```
 
-For the detailed explanation of this idea refer to the [original post](https://medium.com/@dhruvrajvanshi/making-exceptions-type-safe-in-typescript-c4d200ee78e9).
+[Bài viết](https://medium.com/@dhruvrajvanshi/making-exceptions-type-safe-in-typescript-c4d200ee78e9) này giải thích chi tiết về ý tưởng trên, hãy tham khảo.
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Don't ignore caught errors
+### Đừng bỏ qua các lỗi bắt được
 
-Doing nothing with a caught error doesn't give you the ability to ever fix or react to said error. Logging the error to the console (`console.log`) isn't much better as often times it can get lost in a sea of things printed to the console. If you wrap any bit of code in a `try/catch` it means you think an error may occur there and therefore you should have a plan, or create a code path, for when it occurs.
+Không làm gì với những lỗi có thể bắt được không giúp ích gì cho việc sửa lỗi hoặc có những hành động tương ứng với những lỗi đó. Việc bạn thể hiện lỗi bằng `console.log` sẽ không tốt hơn việc không làm gì, nó có thể bị lẫn trong một biển các thứ được in ra ở cửa sổ lệnh.
+Nếu bạn đặt đoạn mã của mình trong một đoạn `try/catch`, điều đó có nghĩa là bạn phải chuẩn bị cho việc một lỗi sẽ xảy ra ở đó và bạn phải có kế hoạch cho việc đó.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 try {
@@ -2411,16 +2411,16 @@ try {
   console.log(error);
 }
 
-// or even worse
+// hoặc thậm chí tệ hơn
 
 try {
   functionThatMightThrow();
 } catch (error) {
-  // ignore error
+  // bỏ qua lỗi
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 import { logger } from './logging'
@@ -2434,11 +2434,11 @@ try {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Don't ignore rejected promises
+### Đừng bỏ trường hợp Promise bị lỗi
 
-For the same reason you shouldn't ignore caught errors from `try/catch`.
+Lý do tương tự như phần trên, bạn không nên bỏ qua việc bắt các lỗi của Promise bằng `try/catch`.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 getUser()
@@ -2463,7 +2463,7 @@ getUser()
     logger.log(error);
   });
 
-// or using the async/await syntax:
+// hoặc sử dụng cú phát `async/await`:
 
 try {
   const user = await getUser();
