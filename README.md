@@ -2881,22 +2881,18 @@ function getActiveSubscriptions(): Promise<Subscription[]> {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Translations
+## Các ngôn ngữ khác
 
-This is also available in other languages:
-- ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [vitorfreitas/clean-code-typescript](https://github.com/vitorfreitas/clean-code-typescript)
-- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese**: 
+Tài liệu nãy cũng có sẵn trong các ngôn ngữ khác:
+
+- ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Tiếng Bồ Đào Nha của người Brazi**: [vitorfreitas/clean-code-typescript](https://github.com/vitorfreitas/clean-code-typescript)
+- ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Tiếng Trung**: 
   - [beginor/clean-code-typescript](https://github.com/beginor/clean-code-typescript)
   - [pipiliang/clean-code-typescript](https://github.com/pipiliang/clean-code-typescript)
-- ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [MSakamaki/clean-code-typescript](https://github.com/MSakamaki/clean-code-typescript)
-- ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [Real001/clean-code-typescript](https://github.com/Real001/clean-code-typescript)
-- ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Turkish**: [ozanhonamlioglu/clean-code-typescript](https://github.com/ozanhonamlioglu/clean-code-typescript)
+- ![ja](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Tiếng Nhật**: [MSakamaki/clean-code-typescript](https://github.com/MSakamaki/clean-code-typescript)
+- ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Tiếng Nga**: [Real001/clean-code-typescript](https://github.com/Real001/clean-code-typescript)
+- ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Tiếng Thổ Nhĩ Kỳ**: [ozanhonamlioglu/clean-code-typescript](https://github.com/ozanhonamlioglu/clean-code-typescript)
 
+Những ngôn ngữ đang trong quá trình dịch:
 
-There is work in progress for translating this to other languages:
-
-- ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) Korean
-
-References will be added once translations are completed.  
-Check this [discussion](https://github.com/labs42io/clean-code-typescript/issues/15) for more details and progress.
-You can make an indispensable contribution to *Clean Code* community by translating this to your language.
+- ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) Tiếng Hàn
