@@ -2709,38 +2709,40 @@ import { UserService } from '@services/UserService';
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Comments
+## Các dòng chú giải
 
-The use of a comments is an indication of failure to express without them. Code should be the only source of truth.
+Việc sử dụng các dòng chú giải là một dấu hiệu của sự thất bại của việc thể hiện ý nghĩa của các dòng mã. Các đoạn mã phải là nơi duy nhất cung cấp sự thật.
   
 > Don’t comment bad code—rewrite it.  
 > — *Brian W. Kernighan and P. J. Plaugher*
 
-### Prefer self explanatory code instead of comments
+>  Dịch: Đừng cố giải thích những dòng mã chưa tốt, hãy viết lại chúng. 
 
-Comments are an apology, not a requirement. Good code *mostly* documents itself.
+### Ưu tiên việc các đoạn mã tự giải thích chính nó thay vì sử dụng các chú giải
 
-**Bad:**
+Các đoạn chú giải như một thứ tồi tệ, không phải một thủ tục. Các đoạn mã tốt *hầu hết* tự viết tài liệu cho chính nó.
+
+**Chưa tốt:**
 
 ```ts
 // Check if subscription is active.
-if (subscription.endDate > Date.now) {  }
+if (subscription.endDate > Date.now()) {  }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
-const isSubscriptionActive = subscription.endDate > Date.now;
+const isSubscriptionActive = subscription.endDate > Date.now();
 if (isSubscriptionActive) { /* ... */ }
 ```
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Don't leave commented out code in your codebase
+### Đừng để lại những đoạn mã đã bị bỏ đi trong những chú thích
 
-Version control exists for a reason. Leave old code in your history.
+`Version control` tồn tại có lý do của nó. Để lại nhưng đoạn mã cũ ở trong lịch sử của nó.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 type User = {
@@ -2751,7 +2753,7 @@ type User = {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 type User = {
@@ -2762,11 +2764,11 @@ type User = {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Don't have journal comments
+### Đừng để lại những chú giải dạng nhật ký
 
-Remember, use version control! There's no need for dead code, commented code, and especially journal comments. Use `git log` to get history!
+Hãy nhớ sử dụng `version control`! Không cần những đoạn mã đã bị bỏ đi, những mã đã bị cho vào chú giải, và đặc biệt là những chú giải dạng nhật ký. Hãy sử dụng lệnh `git log` để xem lại lịch sử!
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 /**
@@ -2780,7 +2782,7 @@ function combine(a: number, b: number): number {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function combine(a: number, b: number): number {
