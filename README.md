@@ -2539,12 +2539,13 @@ type Container = { /* ... */ }
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Function callers and callees should be close
+### Các hàm gọi và các hàm được gọi nên để cạnh nhau
 
-If a function calls another, keep those functions vertically close in the source file. Ideally, keep the caller right above the callee.
-We tend to read code from top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Nếu một hàm họi một hàm khác, nên giữ các hàm đó gần nhau theo chiều dọc trong trong tệp mã.
+Lý tưởng nhất là giữ hàm gọi ở ngay trên hàm được gọi.
+Chúng ta có xu hướng đọc mã từ trên xuống, như khi đọc báo. Vì lý do đó, điều này sẽ giúp mã của bạn sẽ được đọc theo cách đó.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 class PerformanceReview {
@@ -2585,7 +2586,7 @@ const review = new PerformanceReview(employee);
 review.review();
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class PerformanceReview {
@@ -2628,24 +2629,24 @@ review.review();
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Organize imports
+### Tổ chức phần `import`
 
-With clean and easy to read import statements you can quickly see the dependencies of current code. Make sure you apply following good practices for `import` statements:
+Với các đoạn import rõ ràng và dễ đọc, bạn có thể nhanh chóng biết được các gói thư viện mà đoạn mã đang sử dụng. Hãy chắc chắn bạn áp dụng đúng các nguyên tắc tốt nhất cho câu lệnh `import`:
 
-- Import statements should be alphabetized and grouped.
-- Unused imports should be removed.
-- Named imports must be alphabetized (i.e. `import {A, B, C} from 'foo';`)
-- Import sources must be alphabetized within groups, i.e.: `import * as foo from 'a'; import * as bar from 'b';`
-- Groups of imports are delineated by blank lines.
-- Groups must respect following order:
-  - Polyfills (i.e. `import 'reflect-metadata';`)
-  - Node builtin modules (i.e. `import fs from 'fs';`)
-  - external modules (i.e. `import { query } from 'itiriri';`)
-  - internal modules (i.e `import { UserService } from 'src/services/userService';`)
-  - modules from a parent directory (i.e. `import foo from '../foo'; import qux from '../../foo/qux';`)
-  - modules from the same or a sibling's directory (i.e. `import bar from './bar'; import baz from './bar/baz';`)
+- Các câu lệnh `import` nên được sắp xếp theo thứ tự abc và được gom theo nhóm.
+- Những `import` không được sử dụng nên bị xóa bỏ.
+- Tên của những thành phần được `import` nên sắp xếp theo thứ tự abc (ví dụ: `import {A, B, C} from 'foo';`)
+- Nên sắp xếp theo thứ tự acb với tên của các gói thư việc được `import`, ví dụ: `import * as foo from 'a'; import * as bar from 'b';`
+- Các nhóm `import` nên được phân cách bằng các dòng trống.
+- Các nhóm được phân chia theo thứ tự sau:
+  - `Polyfills` (ví dụ: `import 'reflect-metadata';`)
+  - Các mô đun Node (ví dụ: `import fs from 'fs';`)
+  - Các mô đun mở rộng (ví dụ: `import { query } from 'itiriri';`)
+  - Các mô đun nội bộ (ví dụ: `import { UserService } from 'src/services/userService';`)
+  - Các mô đun từ một thư mục cha (ví dụ: `import foo from '../foo'; import qux from '../../foo/qux';`)
+  - Các mô đun từ các thư mục cùng cấp hoặc ở cấp thấp hơn (ví dụ: `import bar from './bar'; import baz from './bar/baz';`)
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 import { TypeDefinition } from '../types/typeDefinition';
@@ -2657,7 +2658,7 @@ import { BindingScopeEnum, Container } from 'inversify';
 import 'reflect-metadata';
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 import 'reflect-metadata';
@@ -2674,19 +2675,19 @@ import { ConfigPlugin } from './plugins/config/configPlugin';
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Use typescript aliases
+### Sử dụng tính năng aliases của TypeScript
 
-Create prettier imports by defining the paths and baseUrl properties in the compilerOptions section in the `tsconfig.json`
+Tạo ra các đoạn `import` đẹp hơn bằng cách định nghĩa các thuộc tính `paths` và `baseUrl` trong phần `compilerOptions` của file `tsconfig.json`.
 
-This will avoid long relative paths when doing imports.
+Điều này sẽ tránh được việc phải dùng các đường dẫn tương đối quá dài khi thực hiện `import`.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 import { UserService } from '../../../services/UserService';
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 import { UserService } from '@services/UserService';
