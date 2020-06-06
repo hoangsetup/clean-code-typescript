@@ -2792,12 +2792,13 @@ function combine(a: number, b: number): number {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Avoid positional markers
+### Tránh đánh dấu vị trí
 
-They usually just add noise. Let the functions and variable names along with the proper indentation and formatting give the visual structure to your code.  
-Most IDE support code folding feature that allows you to collapse/expand blocks of code (see Visual Studio Code [folding regions](https://code.visualstudio.com/updates/v1_17#_folding-regions)).
+Chúng thường chỉ thêm các phiền phức. Hãy để các hàm và các biến thụt lề theo đúng định dạng của chúng, từ đó chúng sẽ cung cấp cấu trúc trực quan cho mã của bạn.
 
-**Bad:**
+Hầu hết các IDE hỗ trợ tính năng "thu gấp" (folding) các đoạn mã, cho phép bạn thu gọn / mở rộng các khỗi mã (tham khảo Visual Studio Code [folding regions](https://code.visualstudio.com/updates/v1_17#_folding-regions)).
+
+**Chưa tốt:**
 
 ```ts
 ////////////////////////////////////////////////////////////////////////////////
@@ -2829,7 +2830,7 @@ class Client {
 };
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 class Client {
@@ -2854,15 +2855,13 @@ class Client {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### TODO comments
+### Chú giải TODO
 
-When you find yourself that you need to leave notes in the code for some later improvements,
-do that using `// TODO` comments. Most IDE have special support for those kind of comments so that
-you can quickly go over the entire list of todos.  
+Khi bạn thấy cần để lại những ghi chú trong mã cho một số cải tiến, chỉnh sửa sau này, hãy làm điều đó bằng cách sử dụng chú giải kiểu `// TODO`. Hầu hết các IDE đều hỗ trợ cho kiểu chú giải đó, bạn có thể nhanh chóng liệt kê toàn bộ các `todo`.
 
-Keep in mind however that a *TODO* comment is not an excuse for bad code. 
+Tuy nhiên, hãy nhớ chú giải kiểu *TODO* không phải là lý do để các đoạn mã xấu tồn tại.
 
-**Bad:**
+**Chưa tốt:**
 
 ```ts
 function getActiveSubscriptions(): Promise<Subscription[]> {
@@ -2871,7 +2870,7 @@ function getActiveSubscriptions(): Promise<Subscription[]> {
 }
 ```
 
-**Good:**
+**Tốt:**
 
 ```ts
 function getActiveSubscriptions(): Promise<Subscription[]> {
