@@ -1,6 +1,6 @@
 # clean-code-typescript [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Clean%20Code%20Typescript&url=https://github.com/labs42io/clean-code-typescript)
 
-Các khái niệm về Clean Code dành cho Typescript.
+Các khái niệm về Clean Code dành cho TypeScript.
 
 Được lấy cảm hứng từ [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript).
 
@@ -24,11 +24,11 @@ Các khái niệm về Clean Code dành cho Typescript.
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Trong cuốn sách [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) của tác giả Robert C. Martin, liệt kê các nguyên tắc thiết kế phần mềm, các nguyên tắc đó cũng được dành cho Typescript. Nó không phải là một phong cách của một người hay nhóm người. Nó là một hướng dẫn để tạo ra các đoạn code có tính [readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) khi viết phần mềm có sử dụng TypeScript.
+Trong cuốn sách [*Clean Code*](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) của tác giả Robert C. Martin, liệt kê các nguyên tắc thiết kế phần mềm, các nguyên tắc đó cũng được dành cho TypeScript. Nó không phải là một phong cách của một người hay nhóm người. Nó là một hướng dẫn để tạo ra các đoạn code có tính [readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) khi viết phần mềm có sử dụng TypeScript.
 
 Không phải mọi nguyên tắc được nhắc tới trong tài liệu này đều phải được tuân thủ nghiêm ngặt, thậm chí số nguyên tắc được thống nhất chung có thể sẽ ít hơn trong tài liệu. Đây chỉ là những hướng dẫn và chỉ là những hướng dẫn, nhưng nó là những thức được đúc kết qua nhiều năm của nhóm tác giả *Clean Code*.
 
-Nghề kỹ sư phần mềm của chúng ta mới chỉ có tuổi đời hơn 50 một chút, và chúng ta vẫn đang học hỏi rất nhiều. Khi mà kiến trúc phần mềm cũng tồn tại đủ lâu như ngành kiến trúc, có lẽ chúng ta sẽ có những quy tắc khó hơn bắt buộc phải tuân theo. Hiện tại, những hướng dẫn này đóng vai trò như nền tảng để bạn hoặc nhóm phát triển của bạn có thể đánh giá được chất lượng code khi code Typescript.
+Nghề kỹ sư phần mềm của chúng ta mới chỉ có tuổi đời hơn 50 một chút, và chúng ta vẫn đang học hỏi rất nhiều. Khi mà kiến trúc phần mềm cũng tồn tại đủ lâu như ngành kiến trúc, có lẽ chúng ta sẽ có những quy tắc khó hơn bắt buộc phải tuân theo. Hiện tại, những hướng dẫn này đóng vai trò như nền tảng để bạn hoặc nhóm phát triển của bạn có thể đánh giá được chất lượng code khi code TypeScript.
 
 Một điều nữa: Bạn hãy nhớ, việc bạn biết được những điều được mô tả trong tài liệu này, sẽ không lập tức giúp bạn trở thành một nhà phát triển phần mềm tốt, và làm việc nhiều năm với chúng không có nghĩa là bạn sẽ không mắc sai lầm. Mọi đoạn code đều được bắt đầu như một bản nháp, giống như đất sét lúc còn ướt được tạo hình cho tới khi đạt được hình dáng cuối cùng. Cuối cùng, chúng ta sẽ luôn chỉnh sửa những điểm chưa hoàn hảo trong code của mình khi chúng ta đem những được code được xem xét bởi những người đồng nghiệp. Đừng cố gượng ép bản thân vì những bản nháp đầu tiên luôn cần cải thiện. Thay vào đó, cứ code đã! 
 
@@ -303,7 +303,7 @@ Nó có một vài ưu điểm sau:
 
 3. Các kiểu dữ liệu nguyên thủy sẽ là tham trị khi được truyền vào theo cách này. Điều này giúp ngăn ngừa các tác dụng phụ(đối tượng truyền vào bị biến đổi sau khi thực hiện hàm). Chú ý: object và array sẽ bị truyền vào như các tham biến(thay đổi giá trị trong hàm sẽ làm thay đổi giá trị của đối tượng được truyền vào).
 
-4. Typescript sẽ cảnh bảo cho bạn những tham số nào không được sử dụng, điều này là không thể nếu không có cú pháp destructuring(??).
+4. TypeScript sẽ cảnh bảo cho bạn những tham số nào không được sử dụng, điều này là không thể nếu không có cú pháp destructuring(??).
 
 **Chưa tốt:**
 
@@ -607,7 +607,7 @@ function createMenu(config: MenuConfig) {
 createMenu({ body: 'Bar' });
 ```
 
-Hoặc bạn có thể sử dụng cú pháp destructuring với các giá trị mặc định:
+Hoặc bạn có thể sử dụng cú pháp `destructuring` với các giá trị mặc định:
 
 ```ts
 type MenuConfig = { title?: string, body?: string, buttonText?: string, cancellable?: boolean };
@@ -619,8 +619,8 @@ function createMenu({ title = 'Foo', body = 'Bar', buttonText = 'Baz', cancellab
 createMenu({ body: 'Bar' });
 ```
 
-Để tránh các tác dụng phụ và các hành vi không mong muốn khi truyền vào các giá trị `undefined` hoặc `null`, bạn có thể cài đặt để trình biên dịch Typescript chặn chúng.
-Chi tiết, tùy chọn [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) của Typescript.
+Để tránh các tác dụng phụ và các hành vi không mong muốn khi truyền vào các giá trị `undefined` hoặc `null`, bạn có thể cài đặt để trình biên dịch TypeScript chặn chúng.
+Chi tiết, tùy chọn [`--strictNullChecks`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#--strictnullchecks) của TypeScript.
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
@@ -666,7 +666,7 @@ Bây giờ, đôi khi bạn cần có một "tác dụng phụ" trong một chư
 
 Nếu bạn tránh được những điều này, bạn sẽ hạnh phúc hơn đa số các lập trình viên khác.
 
-**Chư tốt:**
+**Chưa tốt:**
 
 ```ts
 // Biến toàn cục, giá trị tham chiếu theo các hàm.
@@ -1114,7 +1114,7 @@ itiriri(fibonacci())
 
 ### Sử dụng getter và setter
 
-Typescript hỗ trợ cú pháp getter/setter. Việc sử dụng getter và setter để đóng gói các hành vi khi làm việc với dữ liệu của object sẽ tốt hơn việc đơn giản lấy một một thuộc trên một đối tượng. Bạn có thể hỏi "Tại sao?". Tốt, đây là danh sách những lý do:
+TypeScript hỗ trợ cú pháp getter/setter. Việc sử dụng getter và setter để đóng gói các hành vi khi làm việc với dữ liệu của object sẽ tốt hơn việc đơn giản lấy một một thuộc trên một đối tượng. Bạn có thể hỏi "Tại sao?". Tốt, đây là danh sách những lý do:
 
 - Khi bạn muốn làm nhiều hơn ngoài việc có được một thuộc tính của đối tượng, bạn không cần phải tìm kiếm và thay đổi mọi chỗ lấy thuộc tính đó trong codebase của bạn.
 - Đơn giản để thêm vào các sự kiểm soát hợp lệ khi làm việc với một `set`.
@@ -1217,7 +1217,7 @@ class Circle {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### ƯU tiên tính bất biến
+### Ưu tiên tính bất biến
 
 Hệ thống kiểu dữ liệu của TypeScript cho phép bạn đánh dấu những thuộc tính riêng lẻ của một interface / lớp là *chỉ đọc* (readonly). Điều này cho phép làm việc theo kiểu hướng hàm (những đột biến bất ngờ là không tốt).
 Đối với các kịch bản nâng cao, có một kiểu dữ liệu được tích hợp sẵn `Readonly` trong TypeScript, kiểu dữ liệu này sẽ trả lại kiểu dữ liệu `T` và biến tất cả các thuộc tính của của `T` thành kiểu chỉ đọc bằng cách sử dụng kiểu ánh xạ (xem thêm [mapped types](https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types)).
@@ -2006,7 +2006,7 @@ Nguyên tắc này có hai điều thiết yếu:
 
 Điều này ban đầu có thể khó hiểu, nhưng nếu đã làm việc với Angular, bạn sẽ thấy nguyên tắc này được thực hiện dưới dạng Dependency Injection (DI). Mặc dù chúng không phải là các khái niệm giống hệt nhau, nhưng DIP cũng giữ có các module cấp cao không biết chi tiết của các module cấp thấp và các thiết lập của chúng. Nó có thể thực hiện điều này thông qua DI. Một lợi ích lớn nhất của việc này là nó làm giảm sự ghép nối giữa các module. Khớp nối (phục thuộc) là một mô hình phát triền không tốt vì nó làm cho mã của bạn khó tái cấu trúc.
 
-DIP thường đạt được bằng cách sử dụng bộ chứa điều khiển đảo ngược (inversion of control - IoC). Một ví dụ IoC mạnh mẽ của Typescript là [InversifyJs](https://www.npmjs.com/package/inversify)
+DIP thường đạt được bằng cách sử dụng bộ chứa điều khiển đảo ngược (inversion of control - IoC). Một ví dụ IoC mạnh mẽ của TypeScript là [InversifyJs](https://www.npmjs.com/package/inversify)
 
 **Chưa tốt:**
 
