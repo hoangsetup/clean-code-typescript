@@ -6,18 +6,18 @@ Các khái niệm về Clean Code dành cho Typescript.
 
 ## Mục lục
 
-  1. [Giới thiệu](#introduction)
-  2. [Biến](#variables)
-  3. [Hàm](#functions)
-  4. [Đối tượng và cấu trúc dữ liệu](#objects-and-data-structures)
-  5. [Lớp đối tượng](#classes)
+  1. [Giới thiệu](#giới-thiệu)
+  2. [Biến](#biến)
+  3. [Hàm](#functions-hàm)
+  4. [Đối tượng và cấu trúc dữ liệu](#đối-tượng-và-cấu-trúc-dữ-liệu)
+  5. [Lớp](#lớp)
   6. [SOLID](#solid)
-  7. [Kiểm thử](#testing)
-  8. [Xử đồng thời](#concurrency)
-  9. [Xử lý lỗi](#error-handling)
-  10. [Định dạng](#formatting)
-  11. [Chú thích](#comments)
-  12. [Các ngôn ngữ khác](#translations)
+  7. [Kiểm thử](#kiểm-thử)
+  8. [Xử lý bất động bộ](#xử-lý-bất-động-bộ)
+  9. [Xử lý lỗi](#xử-lý-lỗi)
+  10. [Định dạng](#định-dạng)
+  11. [Chú thích](#chú-thích)
+  12. [Các ngôn ngữ khác](#các-ngôn-ngữ-khác)
 
 ## Giới thiệu
 
@@ -2709,18 +2709,18 @@ import { UserService } from '@services/UserService';
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-## Các dòng chú giải
+## Chú thích
 
-Việc sử dụng các dòng chú giải là một dấu hiệu của sự thất bại của việc thể hiện ý nghĩa của các dòng mã. Các đoạn mã phải là nơi duy nhất cung cấp sự thật.
+Việc sử dụng các dòng chú thích là một dấu hiệu của sự thất bại của việc thể hiện ý nghĩa của các dòng mã. Các đoạn mã phải là nơi duy nhất cung cấp sự thật.
   
 > Don’t comment bad code—rewrite it.  
 > — *Brian W. Kernighan and P. J. Plaugher*
 
 >  Dịch: Đừng cố giải thích những dòng mã chưa tốt, hãy viết lại chúng. 
 
-### Ưu tiên việc các đoạn mã tự giải thích chính nó thay vì sử dụng các chú giải
+### Ưu tiên việc các đoạn mã tự giải thích chính nó thay vì sử dụng các chú thích
 
-Các đoạn chú giải như một thứ tồi tệ, không phải một thủ tục. Các đoạn mã tốt *hầu hết* tự viết tài liệu cho chính nó.
+Các đoạn chú thích như một thứ tồi tệ, không phải một thủ tục. Các đoạn mã tốt *hầu hết* tự viết tài liệu cho chính nó.
 
 **Chưa tốt:**
 
@@ -2764,9 +2764,9 @@ type User = {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Đừng để lại những chú giải dạng nhật ký
+### Đừng để lại những chú thích dạng nhật ký
 
-Hãy nhớ sử dụng `version control`! Không cần những đoạn mã đã bị bỏ đi, những mã đã bị cho vào chú giải, và đặc biệt là những chú giải dạng nhật ký. Hãy sử dụng lệnh `git log` để xem lại lịch sử!
+Hãy nhớ sử dụng `version control`! Không cần những đoạn mã đã bị bỏ đi, những mã đã bị cho vào chú thích, và đặc biệt là những chú thích dạng nhật ký. Hãy sử dụng lệnh `git log` để xem lại lịch sử!
 
 **Chưa tốt:**
 
@@ -2855,11 +2855,11 @@ class Client {
 
 **[⬆ Trở lại đầu trang](#mục-lục)**
 
-### Chú giải TODO
+### Chú thích TODO
 
-Khi bạn thấy cần để lại những ghi chú trong mã cho một số cải tiến, chỉnh sửa sau này, hãy làm điều đó bằng cách sử dụng chú giải kiểu `// TODO`. Hầu hết các IDE đều hỗ trợ cho kiểu chú giải đó, bạn có thể nhanh chóng liệt kê toàn bộ các `todo`.
+Khi bạn thấy cần để lại những ghi chú trong mã cho một số cải tiến, chỉnh sửa sau này, hãy làm điều đó bằng cách sử dụng chú thích kiểu `// TODO`. Hầu hết các IDE đều hỗ trợ cho kiểu chú thích đó, bạn có thể nhanh chóng liệt kê toàn bộ các `todo`.
 
-Tuy nhiên, hãy nhớ chú giải kiểu *TODO* không phải là lý do để các đoạn mã xấu tồn tại.
+Tuy nhiên, hãy nhớ chú thích kiểu *TODO* không phải là lý do để các đoạn mã xấu tồn tại.
 
 **Chưa tốt:**
 
